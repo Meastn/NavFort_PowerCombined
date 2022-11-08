@@ -36,5 +36,6 @@ public class LoginPage {
         passwordInputBox.sendKeys(password);
         loginButton.click();
 
+
     }
 }
