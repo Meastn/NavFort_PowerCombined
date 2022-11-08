@@ -28,6 +28,12 @@ public class LoginPage {
     @FindBy (id="_submit")
     public WebElement loginButton;
 
-    @FindBy(name = "_password")
-    public WebElement passwordSpan;
+//    @FindBy(name = "_password")
+//    public WebElement passwordSpan;
+
+    public void loginToHomepage (String username, String password) {
+        usernameInputbox.sendKeys(username);
+        passwordInputBox.sendKeys(password);
+        loginButton.click();
+    }
 }
