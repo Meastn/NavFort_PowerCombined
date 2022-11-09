@@ -70,7 +70,6 @@ public class NVF_800_VehicleTableViewStepDefinitions {
        Assert.assertTrue(fleet_vehicle_page.totalPgeNumber.isDisplayed());
        Assert.assertTrue(fleet_vehicle_page.totalVehicleRecords.isDisplayed());
 
-
     }
 
 
