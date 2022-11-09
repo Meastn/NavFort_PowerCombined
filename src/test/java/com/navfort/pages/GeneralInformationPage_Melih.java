@@ -13,12 +13,6 @@ public class GeneralInformationPage_Melih {
     public WebElement fleet;
 
 
-    
-    
-
- 
-
-
     public GeneralInformationPage_Melih (){
         PageFactory.initElements(Driver.getDriver(),this);
     }
