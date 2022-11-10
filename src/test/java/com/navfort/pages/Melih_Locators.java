@@ -11,26 +11,12 @@ public class Melih_Locators {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(xpath = "//h2[@class='title']")
-    public WebElement loginPageTitle;
+    @FindBy(xpath = "(//li[@class='dropdown dropdown-level-1'])[1]")
+    public WebElement fleetButton;
 
-    @FindBy(xpath = "//*[@id='prependedInput']")
-    public WebElement usernameInputbox;
+    @FindBy(xpath = "//a[@href='entity/Extend_Entity_Carreservation']")
+    public WebElement vehiclesButton;
 
-    @FindBy (name = "_password")
-    public WebElement passwordInputBox;
-
-    @FindBy (id="remember_me")
-    public  WebElement rememberMeCheckBox;
-
-    @FindBy (xpath = "//a[@href='/user/reset-request']")
-    public WebElement forgotPasswordLink;
-
-    @FindBy (id="_submit")
-    public WebElement loginButton;
-
-    @FindBy(name = "_password")
-    public WebElement passwordSpan;
 
 
 }
