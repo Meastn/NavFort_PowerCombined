@@ -17,6 +17,7 @@ public class NVF_801_DeleteCarStepDefinitions {
 
     LoginPage loginPage=new LoginPage();
     HomePage_NVF_801 homePage_nvf_801 = new HomePage_NVF_801();
+    Actions actions=new Actions(Driver.getDriver());
 
     @Given("user on the fleet home page as a driver")
     public void user_on_the_fleet_home_page_as_a_driver() {
@@ -45,29 +46,43 @@ public class NVF_801_DeleteCarStepDefinitions {
     @When("user enters the fleet vehicle page")
     public void user_enters_the_fleet_vehicle_page() {
 
-        homePage_nvf_801.fleet.click();
-        BrowserUtils.sleep(1);
-        homePage_nvf_801.vehicles.click();
+       homePage_nvf_801.fleet.click();
+       BrowserUtils.sleep(2);
+       homePage_nvf_801.vehicles.click();
 
-
-
-       // homePage_nvf_801.deleteBtn.click();
 
     }
-
     @And ( "user hover over three dots" )
-    public void userHoverOnThreeDots() {
+    public void userHoverOverThreeDots() {
+
+
+        BrowserUtils.sleep(2);
+        actions.moveToElement(homePage_nvf_801.threeDots).perform();
     }
+
 
     @Then ( "user sees the delete button" )
     public void userSeesTheDeleteButton() {
+
+
+        actions.scrollToElement(homePage_nvf_801.deleteBar).clickAndHold();
+        BrowserUtils.sleep(2);
+        homePage_nvf_801.deleteBar.isDisplayed();
+
     }
     @And ( "user try to delete the row" )
     public void userTryToDeleteTheRow() {
+
+    homePage_nvf_801.deleteSign.click();
+
+    homePage_nvf_801.deleteYes.click();
+
     }
 
     @Then ( "User see warning message" )
     public void userSeeWarningMessage() {
+
+       homePage_nvf_801.messageWarning.isDisplayed();
     }
 
 
@@ -86,7 +101,8 @@ public class NVF_801_DeleteCarStepDefinitions {
     }
 
 
-    }
+
+}
 
 
 
