@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
 
 
             dryRun = true,
-            tags ="",
+            tags ="@snippet",
 
             publish = false
 
