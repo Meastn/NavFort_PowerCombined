@@ -6,12 +6,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
-public class YusufsPages {
+import java.util.List;
 
+public class Filter_GenaralPage {
 
-    public YusufsPages(){
+    public Filter_GenaralPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
+
+    @FindBy(xpath = "//ul[@class='ui-multiselect-checkboxes ui-helper-reset fixed-li']/li")
+    public List<WebElement> checkBoxes;
 
     @FindBy(xpath = "//div[@class='loader-mask shown']")
     public WebElement loader_mask;
@@ -36,6 +40,8 @@ public class YusufsPages {
 
     @FindBy(xpath = "//a[@data-size='100']")
     public WebElement full_data_size;
+
+
 
 
 }

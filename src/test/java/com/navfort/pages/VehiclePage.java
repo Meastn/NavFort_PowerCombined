@@ -1,6 +1,5 @@
 package com.navfort.pages;
 
-import com.navfort.utilities.ConfigurationReader;
 import com.navfort.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,25 +7,22 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class NVF_800_Fleet_Vehicle_Page {
+public class VehiclePage {
 
-    public NVF_800_Fleet_Vehicle_Page() {
-        //to connect Driver and the web elements inside the page class
-        PageFactory.initElements(Driver.getDriver(), this);
+
+    public VehiclePage(){
+        PageFactory.initElements(Driver.getDriver(),this);
     }
 
 
+
+    //Muhammet's Locators
+    // comment, comment to cement
     @FindBy(xpath = "//label[@class='control-label']")
     public List<WebElement> controlKeyLabels;
 
     @FindBy(xpath = "//label[@class='control-label']/../div/div")
     public List<WebElement> controlValueLabels;
-
-    @FindBy(xpath = "//a[@class='unclickable'][1]")
-    public WebElement FleetLinkDropdown;
-
-    @FindBy(xpath = "//span[.='Vehicles']")
-    public WebElement VehiclesOption;
 
     @FindBy(xpath = "//label[@class='dib'][2]")
     public WebElement totalPgeNumber;
@@ -56,29 +52,35 @@ public class NVF_800_Fleet_Vehicle_Page {
     public WebElement downloadMessage;
 
 
-    //---locators for login----------------
-    @FindBy(id = "prependedInput")
-    private WebElement usernameField;
+    //Bilal's locators
+    @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")
+    public WebElement threeDots;
 
-    @FindBy(id = "prependedInput2")
-    private WebElement passwordField;
+//div[@class='dropdown-menu__placeholder']
 
-    @FindBy(id = "_submit")
-    private WebElement loginBtn;
+    @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']")
+    public WebElement deleteBar;
 
-    //----methodsForLogin
-    public void loginAsUser() {
-        String username = ConfigurationReader.getProperty("driver_username");
-        String password = ConfigurationReader.getProperty("driver_password");
-
-        usernameField.sendKeys(username);
-        passwordField.sendKeys(password);
-        loginBtn.click();
-    }
+    @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']//ul//li[3]")
+    public WebElement deleteSign;
 
 
+    @FindBy(xpath = "//div[@class='modal oro-modal-danger in']")
+    public WebElement deleteConfirm;
 
 
+    @FindBy(className= "modal-body")
+    public WebElement deleteMessage;
 
+
+    @FindBy(xpath = "//a[.='Yes, Delete']")
+    public WebElement deleteYes;
+
+    @FindBy(className ="message")
+    public WebElement messageWarning;
+
+
+    @FindBy(xpath = "//div[@class='dropdown btn-group']")
+    public WebElement deleteBtn;
 
 }

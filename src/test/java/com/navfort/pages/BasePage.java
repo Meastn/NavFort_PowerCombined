@@ -3,7 +3,7 @@ package com.navfort.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class HomePage_Okan {
+public class BasePage {
 
     @FindBy(xpath = "//h1[@class='oro-subtitle']")
     public WebElement homePageTitle;
@@ -13,6 +13,7 @@ public class HomePage_Okan {
 
     @FindBy(xpath = "//a[@href='entity/Extend_Entity_Carreservation']")
     public WebElement vehiclesButton;
+
 
 
 

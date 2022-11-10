@@ -16,8 +16,8 @@ import org.junit.runner.RunWith;
             glue =  "com/navfort/step_definitions",
 
 
-            dryRun = true,
-            tags ="",
+            dryRun = false,
+            tags ="@wip",
 
             publish = false
 
