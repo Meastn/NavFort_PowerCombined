@@ -1,7 +1,10 @@
 package com.navfort.step_definitions;
 
 import com.navfort.pages.NVF_800_Fleet_Vehicle_Page;
+import com.navfort.utilities.BrowserUtils;
+import com.navfort.utilities.ConfigurationReader;
 import com.navfort.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -19,11 +22,14 @@ public class NVF_800_VehicleTableViewStepDefinitions {
         NVF_800_Fleet_Vehicle_Page fleet_vehicle_page=new NVF_800_Fleet_Vehicle_Page();
         Actions actions;
 
-
-
-        //User can see all vehicle information in a table
+    @Given("user is login with valid credentials")
+    public void userIsLogin() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+        fleet_vehicle_page.loginAsUser();
+        }
     @Given("user is on the vehicles page placed under the Fleet Dropdown")
     public void user_is_on_the_vehicles_page_placed_under_the_fleet_dropdown() {
+
         actions=new Actions(Driver.getDriver());
             actions.moveToElement(fleet_vehicle_page.FleetLinkDropdown).perform();
             fleet_vehicle_page.VehiclesOption.click();
@@ -34,30 +40,24 @@ public class NVF_800_VehicleTableViewStepDefinitions {
 
 
     }
-    @When("user see all vehicle {string} under the General Information header")
-    public void user_see_all_vehicle_under_the_general_information_header(List<Map<String,Object>>expectedlistOfKeyAndValueOfVehicleInfo) {
+    @When("user see all vehicle information under the General Information header")
+    public void user_see_all_vehicle_under_the_general_information_header(List<String>carInfoList) {
 
-        List<Map<String,Object>>vehiclesInfoKeyValueList=new ArrayList<>();
-        Map<String,Object>vehiclesInfoForKeyAndValue=new LinkedHashMap<>();
+        List<String>vehiclesInfoList=new ArrayList<>();
 
-        for (int i = 0; i <expectedlistOfKeyAndValueOfVehicleInfo.size() ; i++) {
-            vehiclesInfoForKeyAndValue.put(fleet_vehicle_page.controlKeyLabels.get(i).getText(),
-            fleet_vehicle_page.controlKeyLabels.get(i).getText());
-
-            vehiclesInfoKeyValueList.add(vehiclesInfoForKeyAndValue);
+        for (WebElement controlKeyLabel : fleet_vehicle_page.controlKeyLabels) {
+            vehiclesInfoList.add(controlKeyLabel.getText());
         }
-
-
 
     }
     @When("user navigates back to the vehicles page")
     public void user_navigates_back_to_the_vehicles_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+     Driver.getDriver().navigate().back();
     }
     @Then("user should be able to see exact informations on the table")
     public void user_should_be_able_to_see_exact_informations_on_the_table() {
 
+            
     }
 
 
@@ -91,6 +91,7 @@ public class NVF_800_VehicleTableViewStepDefinitions {
 
     @When("user enters previous page button")
     public void userEntersPreviousPageButton() {
+        fleet_vehicle_page.previousButton.click();
     }
 
     @Then("user can go to the previousTablePage")
@@ -99,4 +100,26 @@ public class NVF_800_VehicleTableViewStepDefinitions {
 
 
 
+    //AC 4==>User can download table data in XLS or CSV format from "Export Grid"
+
+    @When("user click export Grid button")
+    public void userClickExportGridButton() {
+        fleet_vehicle_page.exportGridButton.click();
+    }
+
+    @And("user click  xlsx option")
+    public void userClickXlsxOption() {
+        fleet_vehicle_page.xlsxButton.click();
+    }
+
+    @And("user click  csv option")
+    public void userClickCsvOption() {
+        fleet_vehicle_page.csvButton.click();
+    }
+
+    @Then("user can see the successfully download message")
+    public void userCanSeeTheSuccessfullyDownloadMessage() {
+
+           Assert.assertTrue( fleet_vehicle_page.downloadMessage.isDisplayed());
+    }
 }

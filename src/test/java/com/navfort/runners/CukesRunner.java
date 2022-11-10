@@ -14,8 +14,11 @@ import org.junit.runner.RunWith;
             },
             features = "src/test/resources/features",
             glue =  "com/navfort/step_definitions",
+
+
             dryRun = true,
-            tags ="@wip",
+            tags ="",
+
             publish = false
 
     )

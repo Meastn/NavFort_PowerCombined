@@ -1,5 +1,6 @@
 package com.navfort.pages;
 
+import com.navfort.utilities.ConfigurationReader;
 import com.navfort.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -41,6 +42,41 @@ public class NVF_800_Fleet_Vehicle_Page {
 
     @FindBy(xpath = "//input[@type='number']")
     public WebElement numberBetweenTheNextAndPreviousButton;
+
+    @FindBy(xpath = "//i[@class='fa-upload']/..")
+    public WebElement exportGridButton;
+
+    @FindBy(xpath = "//a[@title='CSV']")
+    public WebElement csvButton;
+
+    @FindBy(xpath = "//a[@title='XLSX']")
+    public WebElement xlsxButton;
+
+    @FindBy(xpath = "//div[@class='message']")
+    public WebElement downloadMessage;
+
+
+    //---locators for login----------------
+    @FindBy(id = "prependedInput")
+    private WebElement usernameField;
+
+    @FindBy(id = "prependedInput2")
+    private WebElement passwordField;
+
+    @FindBy(id = "_submit")
+    private WebElement loginBtn;
+
+    //----methodsForLogin
+    public void loginAsUser() {
+        String username = ConfigurationReader.getProperty("driver_username");
+        String password = ConfigurationReader.getProperty("driver_password");
+
+        usernameField.sendKeys(username);
+        passwordField.sendKeys(password);
+        loginBtn.click();
+    }
+
+
 
 
 
