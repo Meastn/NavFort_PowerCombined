@@ -1,6 +1,5 @@
 package com.navfort.step_definitions;
 
-import com.navfort.pages.HomePage_NVF_801;
 import com.navfort.pages.LoginPage;
 import com.navfort.utilities.BrowserUtils;
 import com.navfort.utilities.Driver;
@@ -8,9 +7,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public class NVF_801_DeleteCarStepDefinitions {

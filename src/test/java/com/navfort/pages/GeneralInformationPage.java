@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class GeneralInformationPage_Melih {
+public class GeneralInformationPage {
     @FindBy(xpath = "/html/body/div[2]/div[2]/header/div[2]/ul/li[2]/a/span")
     public WebElement fleetTitleLevel;
 
@@ -13,7 +13,7 @@ public class GeneralInformationPage_Melih {
     public WebElement fleet;
 
 
-    public GeneralInformationPage_Melih (){
+    public GeneralInformationPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
     

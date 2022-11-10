@@ -1,7 +1,7 @@
 package com.navfort.step_definitions;
 
 import com.navfort.pages.LoginPage;
-import com.navfort.pages.YusufsPages;
+import com.navfort.pages.VehiclePage;
 import com.navfort.utilities.ConfigurationReader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,7 +11,7 @@ import org.junit.Assert;
 public class YusufsStepDefs {
 
 LoginPage loginPage = new LoginPage();
-YusufsPages yusufsPages = new YusufsPages();
+VehiclePage vehiclePage = new VehiclePage();
 
 
 
@@ -28,13 +28,13 @@ YusufsPages yusufsPages = new YusufsPages();
     }
     @When("user clicks on filter icon, Manage Filter button should be visible")
     public void user_clicks_on_filter_icon_manage_filter_button_should_be_visible() {
-        if (yusufsPages.manage_filter.isDisplayed()){
+        if (vehiclePage.manage_filter.isDisplayed()){
             System.out.println("filter is already clicked");
         }else {
-            yusufsPages.filter_menu.click();
+            vehiclePage.filter_menu.click();
         }
 
-        Assert.assertTrue(yusufsPages.manage_filter.isDisplayed());
+        Assert.assertTrue(vehiclePage.manage_filter.isDisplayed());
     }
     @When("User can apply filters by clicking on <filter_name>")
     public void user_can_apply_filters_by_clicking_on_filter_name() {

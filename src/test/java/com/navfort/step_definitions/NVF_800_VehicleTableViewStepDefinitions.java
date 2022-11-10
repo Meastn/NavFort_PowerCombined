@@ -1,7 +1,5 @@
 package com.navfort.step_definitions;
 
-import com.navfort.pages.NVF_800_Fleet_Vehicle_Page;
-import com.navfort.utilities.BrowserUtils;
 import com.navfort.utilities.ConfigurationReader;
 import com.navfort.utilities.Driver;
 import io.cucumber.java.en.And;
@@ -13,9 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 public class NVF_800_VehicleTableViewStepDefinitions {
 
