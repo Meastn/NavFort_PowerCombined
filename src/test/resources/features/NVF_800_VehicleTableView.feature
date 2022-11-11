@@ -4,8 +4,8 @@ Feature: Seeing general vehicle information under the vehicles
   As a user, I should be able to see all vehicle information in a table, under Fleet-Vehicle page
 
   Background: User is on the vehicles page
-    Given user is login with valid credentials
-    Given user is on the vehicles page placed under the Fleet Dropdown
+    Given user is login with valid credentials and on the vehicles page placed under the Fleet Dropdown
+
 
   Scenario: User can see all vehicle information in a table
     When user click view icon on the three dot icon

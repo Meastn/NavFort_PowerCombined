@@ -24,18 +24,18 @@ public class NVF_800_VehicleTableViewStepDefinitions {
      VehiclePage vehiclePage=new VehiclePage();
         Actions actions;
 
-    @Given("user is login with valid credentials")
-    public void userIsLogin() {
+
+    @Given("user is login with valid credentials and on the vehicles page placed under the Fleet Dropdown")
+    public void userIsLoginWithValidCredentialsAndOnTheVehiclesPagePlacedUnderTheFleetDropdown() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
         loginPage.loginAsUserType("driver");
-       BrowserUtils.waitForInvisibility(vehiclePage.loader_mask);
-        }
-    @Given("user is on the vehicles page placed under the Fleet Dropdown")
-    public void user_is_on_the_vehicles_page_placed_under_the_fleet_dropdown() {
+        BrowserUtils.sleep(5);
+//       BrowserUtils.waitForInvisibility(vehiclePage.loader_mask);
+//        actions=new Actions(Driver.getDriver());
+//        actions.moveToElement(basePage.fleetButton).perform();
+        basePage.fleetButton.click();
 
-        actions=new Actions(Driver.getDriver());
-            actions.moveToElement(basePage.fleetButton).perform();
-            basePage.vehiclesButton.click();
+        basePage.vehiclesButton.click();
 
 
     }
@@ -45,7 +45,7 @@ public class NVF_800_VehicleTableViewStepDefinitions {
     @When("user click view icon on the three dot icon")
     public void userClickViewIconOnTheThreeDotIcon() {
 
-       actions.moveToElement(vehiclePage.threeDots).perform();
+       vehiclePage.threeDots.click();
        vehiclePage.viewIcon.click();
 
     }
@@ -132,6 +132,7 @@ public class NVF_800_VehicleTableViewStepDefinitions {
 
            Assert.assertTrue( vehiclePage.downloadMessage.isDisplayed());
     }
+
 
 
 }
