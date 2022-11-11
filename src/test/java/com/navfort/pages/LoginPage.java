@@ -10,18 +10,6 @@ public class LoginPage {
     public LoginPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
-
-    @FindBy(xpath = "//h2[@class='title']")
-    public WebElement loginPageTitle;
-
-
-    @FindBy (id="remember_me")
-    public  WebElement rememberMeCheckBox;
-
-    @FindBy (xpath = "//a[@href='/user/reset-request']")
-    public WebElement forgotPasswordLink;
-
-
     @FindBy(id = "prependedInput")
     private WebElement usernameField;
 
@@ -30,6 +18,16 @@ public class LoginPage {
 
     @FindBy(id = "_submit")
     private WebElement loginBtn;
+
+    @FindBy(xpath = "//h2[@class='title']")
+    public WebElement loginPageTitle;
+
+    @FindBy (id="remember_me")
+    public WebElement rememberMeCheckBox;
+
+    @FindBy (xpath = "//a[@href='/user/reset-request']")
+    public WebElement forgotPasswordLink;
+
 
     public void loginAsUserType(String userType){
 

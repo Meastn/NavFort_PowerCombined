@@ -48,8 +48,6 @@ public class VehiclePage {
     @FindBy(xpath = "//label[@class='control-label']/../div/div")
     public List<WebElement> controlValueLabels;
 
-
-
     @FindBy(xpath = "//label[@class='dib'][2]")
     public WebElement totalPgeNumber;
 
@@ -85,8 +83,6 @@ public class VehiclePage {
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")
     public WebElement threeDots;
 
-//div[@class='dropdown-menu__placeholder']
-
     @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']")
     public WebElement deleteBar;
 
@@ -97,10 +93,8 @@ public class VehiclePage {
     @FindBy(xpath = "//div[@class='modal oro-modal-danger in']")
     public WebElement deleteConfirm;
 
-
     @FindBy(className= "modal-body")
     public WebElement deleteMessage;
-
 
     @FindBy(xpath = "//a[.='Yes, Delete']")
     public WebElement deleteYes;
@@ -109,8 +103,6 @@ public class VehiclePage {
     public WebElement messageWarning;
 
 
-    @FindBy(xpath = "//div[@class='dropdown btn-group']")
-    public WebElement deleteBtn;
 
     @FindBy(xpath = "//a[@title='Create Car']")
     public WebElement createCarButton;
