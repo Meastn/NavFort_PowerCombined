@@ -1,5 +1,9 @@
 package com.navfort.step_definitions;
 
+import com.navfort.pages.BasePage;
+import com.navfort.pages.LoginPage;
+import com.navfort.pages.VehiclePage;
+import com.navfort.utilities.BrowserUtils;
 import com.navfort.utilities.ConfigurationReader;
 import com.navfort.utilities.Driver;
 import io.cucumber.java.en.And;
@@ -15,25 +19,34 @@ import java.util.List;
 
 public class NVF_800_VehicleTableViewStepDefinitions {
 
-        NVF_800_Fleet_Vehicle_Page fleet_vehicle_page=new NVF_800_Fleet_Vehicle_Page();
+     LoginPage loginPage=new LoginPage();
+     BasePage basePage=new BasePage();
+     VehiclePage vehiclePage=new VehiclePage();
         Actions actions;
 
     @Given("user is login with valid credentials")
     public void userIsLogin() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
-        fleet_vehicle_page.loginAsUser();
+        loginPage.loginAsUserType("driver");
+       BrowserUtils.waitForInvisibility(vehiclePage.loader_mask);
         }
     @Given("user is on the vehicles page placed under the Fleet Dropdown")
     public void user_is_on_the_vehicles_page_placed_under_the_fleet_dropdown() {
 
         actions=new Actions(Driver.getDriver());
-            actions.moveToElement(fleet_vehicle_page.FleetLinkDropdown).perform();
-            fleet_vehicle_page.VehiclesOption.click();
+            actions.moveToElement(basePage.fleetButton).perform();
+            basePage.vehiclesButton.click();
+
 
     }
-    @When("user click any row at anywhere on the row")
-    public void user_click_any_row_at_anywhere_on_the_row() {
 
+
+    //---------------------------------
+    @When("user click view icon on the three dot icon")
+    public void userClickViewIconOnTheThreeDotIcon() {
+
+       actions.moveToElement(vehiclePage.threeDots).perform();
+       vehiclePage.viewIcon.click();
 
     }
     @When("user see all vehicle information under the General Information header")
@@ -41,7 +54,7 @@ public class NVF_800_VehicleTableViewStepDefinitions {
 
         List<String>vehiclesInfoList=new ArrayList<>();
 
-        for (WebElement controlKeyLabel : fleet_vehicle_page.controlKeyLabels) {
+        for (WebElement controlKeyLabel : vehiclePage.controlKeyLabels) {
             vehiclesInfoList.add(controlKeyLabel.getText());
         }
 
@@ -53,6 +66,7 @@ public class NVF_800_VehicleTableViewStepDefinitions {
     @Then("user should be able to see exact informations on the table")
     public void user_should_be_able_to_see_exact_informations_on_the_table() {
 
+        System.out.println("yolda geliyor");
             
     }
 
@@ -63,8 +77,8 @@ public class NVF_800_VehicleTableViewStepDefinitions {
     @Then("user can see total page number and total recording of vehicles")
     public void userCanSeeTotalPageNumberAndTotalRecordingOfVehicles() {
 
-       Assert.assertTrue(fleet_vehicle_page.totalPgeNumber.isDisplayed());
-       Assert.assertTrue(fleet_vehicle_page.totalVehicleRecords.isDisplayed());
+       Assert.assertTrue(vehiclePage.totalPgeNumber.isDisplayed());
+       Assert.assertTrue(vehiclePage.totalVehicleRecords.isDisplayed());
 
     }
 
@@ -73,7 +87,7 @@ public class NVF_800_VehicleTableViewStepDefinitions {
 
     @When("user enters next page button")
     public void userEntersNextPageButton() {
-        fleet_vehicle_page.nextButton.click();
+        vehiclePage.nextButton.click();
     }
 
 
@@ -87,7 +101,7 @@ public class NVF_800_VehicleTableViewStepDefinitions {
 
     @When("user enters previous page button")
     public void userEntersPreviousPageButton() {
-        fleet_vehicle_page.previousButton.click();
+        vehiclePage.previousButton.click();
     }
 
     @Then("user can go to the previousTablePage")
@@ -100,22 +114,24 @@ public class NVF_800_VehicleTableViewStepDefinitions {
 
     @When("user click export Grid button")
     public void userClickExportGridButton() {
-        fleet_vehicle_page.exportGridButton.click();
+        vehiclePage.exportGridButton.click();
     }
 
     @And("user click  xlsx option")
     public void userClickXlsxOption() {
-        fleet_vehicle_page.xlsxButton.click();
+        vehiclePage.xlsxButton.click();
     }
 
     @And("user click  csv option")
     public void userClickCsvOption() {
-        fleet_vehicle_page.csvButton.click();
+        vehiclePage.csvButton.click();
     }
 
     @Then("user can see the successfully download message")
     public void userCanSeeTheSuccessfullyDownloadMessage() {
 
-           Assert.assertTrue( fleet_vehicle_page.downloadMessage.isDisplayed());
+           Assert.assertTrue( vehiclePage.downloadMessage.isDisplayed());
     }
+
+
 }
