@@ -10,14 +10,14 @@ Feature: Fleet Management Delete Car Functionality
     And user hover over three dots
     Then user sees the delete button
 
-  @wip
+
   Scenario:Login as sales manager
     Given user on the fleet home page as a sales manager
     When user enters the fleet vehicle page
     And user hover over three dots
     Then user sees the delete button
 
-  @wip
+
   Scenario:Login as store manager
     Given user on the fleet home page as a store manager
     When user enters the fleet vehicle page
