@@ -1,5 +1,7 @@
 package com.navfort.step_definitions;
 
+import com.navfort.pages.BasePage;
+import com.navfort.pages.Filter_GenaralPage;
 import com.navfort.pages.LoginPage;
 import com.navfort.pages.VehiclePage;
 import com.navfort.utilities.ConfigurationReader;
@@ -8,33 +10,33 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class YusufsStepDefs {
+public class NVF797_FilterGeneral {
 
+    BasePage basePage = new BasePage();
 LoginPage loginPage = new LoginPage();
 VehiclePage vehiclePage = new VehiclePage();
+Filter_GenaralPage filter_genaralPage = new Filter_GenaralPage();
 
 
 
 
     @Given("user should log in with valid credentials and navigate to the fleet vehicle page")
     public void user_should_log_in_with_valid_credentials_and_navigate_to_the_fleet_vehicle_page() {
-    String driver_username = ConfigurationReader.getProperty("driver_username");
-    String driver_password = ConfigurationReader.getProperty("driver_password");
+      loginPage.loginAsDriver();
+      basePage.fleetButton.click();
+      basePage.vehiclesButton.click();
 
-    String sales_manager_username = ConfigurationReader.getProperty("sales_manager_username");
-    String sales_manager_password = ConfigurationReader.getProperty("sales_manager_password");
-
-        loginPage.loginToHomepage(driver_username,driver_password);
+        System.out.println(filter_genaralPage.checkBoxes);
     }
     @When("user clicks on filter icon, Manage Filter button should be visible")
     public void user_clicks_on_filter_icon_manage_filter_button_should_be_visible() {
-        if (vehiclePage.manage_filter.isDisplayed()){
+        if (filter_genaralPage.manage_filter.isDisplayed()){
             System.out.println("filter is already clicked");
         }else {
-            vehiclePage.filter_menu.click();
+            filter_genaralPage.filter_menu.click();
         }
 
-        Assert.assertTrue(vehiclePage.manage_filter.isDisplayed());
+        Assert.assertTrue(filter_genaralPage.manage_filter.isDisplayed());
     }
     @When("User can apply filters by clicking on <filter_name>")
     public void user_can_apply_filters_by_clicking_on_filter_name() {
