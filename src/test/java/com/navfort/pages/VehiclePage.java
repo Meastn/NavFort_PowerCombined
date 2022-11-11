@@ -112,4 +112,9 @@ public class VehiclePage {
     @FindBy(xpath = "//div[@class='dropdown btn-group']")
     public WebElement deleteBtn;
 
+    @FindBy(xpath = "//a[@title='Create Car']")
+    public WebElement createCarButton;
+
+    
+
 }
