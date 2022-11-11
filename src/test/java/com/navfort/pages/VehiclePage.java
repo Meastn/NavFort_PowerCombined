@@ -1,6 +1,7 @@
 package com.navfort.pages;
 
 import com.navfort.utilities.Driver;
+import org.checkerframework.checker.formatter.qual.Format;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -19,7 +20,7 @@ public class VehiclePage {
     //Muhammet's Locators
     // comment, comment to cement
     @FindBy(xpath = "//label[@class='control-label']")
-    public List<WebElement> controlKeyLabels;
+    public  List<WebElement> controlKeyLabels;
 
     @FindBy(xpath = "//label[@class='control-label']/../div/div")
     public List<WebElement> controlValueLabels;
@@ -50,6 +51,9 @@ public class VehiclePage {
 
     @FindBy(xpath = "//div[@class='message']")
     public WebElement downloadMessage;
+
+    @FindBy(xpath = "//i[@class='fa-eye hide-text']/..")
+    public WebElement viewIcon;
 
 
     //Bilal's locators
@@ -82,5 +86,10 @@ public class VehiclePage {
 
     @FindBy(xpath = "//div[@class='dropdown btn-group']")
     public WebElement deleteBtn;
+
+    @FindBy(xpath = "//a[@title='Create Car']")
+    public WebElement createCarButton;
+
+    
 
 }

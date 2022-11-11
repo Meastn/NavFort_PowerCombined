@@ -8,7 +8,7 @@ Feature: Seeing general vehicle information under the vehicles
     Given user is on the vehicles page placed under the Fleet Dropdown
 
   Scenario: User can see all vehicle information in a table
-    When user click any row at anywhere on the row
+    When user click view icon on the three dot icon
     And user see all vehicle information under the General Information header
       | License Plate             |
       | Tags                      |
