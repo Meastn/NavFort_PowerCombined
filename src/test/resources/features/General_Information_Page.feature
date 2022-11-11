@@ -1,17 +1,23 @@
+
 Feature: General Information
+  Back
 
-  @wip
-  Scenario Outline: : User are on homepage
-    Given User is on login page
-    When User enters his username "<username>" and password "<password>"
-    And User clicks the login button
-    Then User lands on homepage "<homepage>"
+  Background: User lands on homepage
+    When User is on login page
 
-    Examples: data
-    |username|password|homepage|
-    | salesmanager101 | UserUser123 | Dashboard |
-    | storemanager85  |UserUser123 | Dashboard  |
-    | user1           |UserUser123 |Quick Launch Pad|
+
+  Scenario: User sees General Information page by clicking on any vehicle (row)
+    Given User clicks fleet and vehicles menu items
+    When User clicks any row
+    Then User can see the general information page
+
+  @melih
+  Scenario: User sees General Information page by clicking the eye icon on each row
+    Given User clicks fleet and vehicles menu items
+    When User clicks on eye icon
+    Then User can see the general information page
+
+
 
 
 
