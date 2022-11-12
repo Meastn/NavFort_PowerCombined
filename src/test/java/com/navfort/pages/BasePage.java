@@ -13,18 +13,28 @@ public class BasePage {
    }
 
 
+
    @FindBy(xpath = "//h1[@class='oro-subtitle']")
    public WebElement homePageTitle;
 
-//    @FindBy(xpath = "(//li[@class='dropdown dropdown-level-1'])[1]")
-//    public WebElement fleetButton;
+   @FindBy(xpath = "(//li[@class='dropdown dropdown-level-1'])[1]")
+    public WebElement fleetButton;
 
- //  @FindBy(xpath = "//a[@class='unclickable']")
-   @FindBy(xpath = "(//li[@class='dropdown dropdown-level-1'])[1]") //edited fleetButton xpath by Serdar
-   public WebElement fleetButton;
-
-   @FindBy(xpath = "//a[@href='entity/Extend_Entity_Carreservation']")
+    @FindBy(xpath = "//a[@href='entity/Extend_Entity_Carreservation']")
    public WebElement vehiclesButton;
+
+  
+// Melih's locators ...
+
+  @FindBy(xpath = "//*[@id='user-menu']/a/i")
+    public WebElement userMenu;
+
+ @FindBy(xpath = "//a[@class='no-hash']")
+ public WebElement logoutMenuButton;
+
+    
+    // Melih's locators--
+
 
    @FindBy(xpath = "//div[@class='bar']") // added by Serdar in order to use in BrowserUtils.invisibilityOf
    public WebElement loadingBar;
