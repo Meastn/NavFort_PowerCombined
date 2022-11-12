@@ -65,7 +65,7 @@ public class VehiclePage {
 
     @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']//ul//li[3]")
     public WebElement deleteSign;
-    
+
     @FindBy(xpath = "//div[@class='modal oro-modal-danger in']")
     public WebElement deleteConfirm;
 

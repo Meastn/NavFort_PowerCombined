@@ -68,6 +68,7 @@ public class NVF794_GeneralInformation_StepDefinitions {
         Actions action = new Actions(Driver.getDriver());
         action.moveToElement(vehiclePage.threeDots).perform();
 
+
         //action.click(vehiclePage.threeDots).perform();
         //action.scrollToElement(vehiclePage.threeDotBar).clickAndHold().perform();
 //            action.click(vehiclePage.viewIcon).perform();
