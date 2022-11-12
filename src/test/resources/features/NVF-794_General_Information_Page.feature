@@ -1,22 +1,43 @@
 Feature: General Information
 
-  @wip
-  Scenario Outline: : User are on homepage
-    Given User is on login page
-    When User enters his username "<username>" and password "<password>"
-    And User clicks the login button
-    Then User lands on homepage "<homepage>"
 
-    Examples: data
-    |username|password|homepage|
-    | salesmanager101 | UserUser123 | Dashboard |
-    | storemanager85  |UserUser123 | Dashboard  |
-    | user1           |UserUser123 |Quick Launch Pad|
+  Background: User has logged in
+    Given User logs in to the application
+
+  Scenario: User can see the car general information by clicking a table row
+    Given User clicks fleet and vehicles menu items
+    When User clicks any row
+    Then User can see the general information page
+
+  Scenario: User can see the car general information by clicking the view option
+    Given User clicks fleet and vehicles menu items
+    When User clicks on eye icon
+    Then User can see the general information page
+
+  Scenario: Managers should see options on general information page
+    Given User clicks fleet and vehicles menu items
+    When User clicks any row
+    Then User can see the edit button
+    And User can see the delete button
+    And User can see the add event button
+
+  @melih
+    Scenario: Driver shall not see options on general information page
+    Given User logs out
+    When User logs in as a Driver
+    And Driver clicks fleet and vehicles menu items
+    And User clicks any row
+    Then User can not see the edit button
+    And User can not see the delete button
+    And User can not see the add event button
 
 
-
-
-
+Scenario: Vehicle information on general information and vehicle table should be the same
+  Given User clicks fleet and vehicles menu items
+  When Data extracted from the first raw of the table
+  And User clicks first row
+  And Data extracted from the general information page
+  Then Vehicle data from both sources should match correctly
 
 
 
