@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VehiclePage {
@@ -54,8 +55,7 @@ public class VehiclePage {
 
     @FindBy(xpath = "//i[@class='fa-eye hide-text']/..")
     public WebElement viewIcon;
-
-
+    
     //Bilal's locators
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")
     public WebElement threeDots;
@@ -65,7 +65,6 @@ public class VehiclePage {
 
     @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']//ul//li[3]")
     public WebElement deleteSign;
-
 
     @FindBy(xpath = "//div[@class='modal oro-modal-danger in']")
     public WebElement deleteConfirm;
@@ -78,12 +77,24 @@ public class VehiclePage {
 
     @FindBy(className ="message")
     public WebElement messageWarning;
-
-
-
+    
     @FindBy(xpath = "//a[@title='Create Car']")
     public WebElement createCarButton;
 
+    //Melih's locators --->>>>>
+    @FindBy(xpath = "//tbody[@class='grid-body']/tr[*]")
+    public WebElement carsTableFirstRow;
+
+    @FindBy(xpath = "//ul[contains(@data-options, 'true,')]")
+    public WebElement threeDotBar;
+
+    @FindBy(xpath = "//table")
+    public WebElement carsTable;
+
+    @FindBy(css = "a.action\n.no-hash\n.\n.mode-icon-only\n.\n")
+    public WebElement viewSign2;
+
     
+//  Melih's locators <<<<----
 
 }

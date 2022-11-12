@@ -17,16 +17,25 @@ public class BasePage {
     @FindBy(xpath = "//h1[@class='oro-subtitle']")
     public WebElement homePageTitle;
 
-//    @FindBy(xpath = "(//li[@class='dropdown dropdown-level-1'])[1]")
-//    public WebElement fleetButton;
-
-    @FindBy(xpath = "//a[@class='unclickable']")
+    @FindBy(xpath = "(//li[@class='dropdown dropdown-level-1'])[1]")
     public WebElement fleetButton;
+
 
     @FindBy(xpath = "//a[@href='entity/Extend_Entity_Carreservation']")
     public WebElement vehiclesButton;
 
+// Melih's locators ...
 
+  @FindBy(xpath = "//*[@id='user-menu']/a/i")
+    public WebElement userMenu;
+
+ @FindBy(xpath = "//a[@class='no-hash']")
+ public WebElement logoutMenuButton;
+
+
+
+    
+    // Melih's locators
 
 
 }
