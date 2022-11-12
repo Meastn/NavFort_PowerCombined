@@ -4,6 +4,7 @@ Feature: General Information
   Background: User has logged in
     Given User logs in to the application
 
+  @melih
   Scenario: User can see the car general information by clicking a table row
     Given User clicks fleet and vehicles menu items
     When User clicks any row
@@ -21,7 +22,7 @@ Feature: General Information
     And User can see the delete button
     And User can see the add event button
 
-  @melih
+
     Scenario: Driver shall not see options on general information page
     Given User logs out
     When User logs in as a Driver

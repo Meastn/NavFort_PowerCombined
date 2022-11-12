@@ -43,8 +43,8 @@ public class NVF794_GeneralInformation_StepDefinitions {
     @Given("User clicks fleet and vehicles menu items")
     public void userClicksFleetAndVehiclesMenuItems() {
         BrowserUtils.sleep(15);
-        basePage.fleetButtonAlt.click();
-        basePage.vehiclesButtonAlt.click();
+        basePage.fleetButton.click();
+        basePage.vehiclesButton.click();
     }
 
     @Given("User clicks any row")
@@ -129,8 +129,8 @@ public class NVF794_GeneralInformation_StepDefinitions {
     @And("Driver clicks fleet and vehicles menu items")
     public void driverClicksFleetAndVehiclesMenuItems() {
         BrowserUtils.sleep(10);
-        basePage.fleetButtonDriver.click();
-        basePage.vehicleButtonDriver.click();
+        basePage.fleetButton.click();
+        basePage.vehiclesButton.click();
     }
 
     @Then("User can not see the edit button")

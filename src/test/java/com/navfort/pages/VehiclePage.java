@@ -88,17 +88,11 @@ public class VehiclePage {
     @FindBy(xpath = "//ul[contains(@data-options, 'true,')]")
     public WebElement threeDotBar;
 
-//    @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']//ul//li[1]")
-//    public WebElement viewSign;
     @FindBy(xpath = "//table")
     public WebElement carsTable;
 
     @FindBy(css = "a.action\n.no-hash\n.\n.mode-icon-only\n.\n")
     public WebElement viewSign2;
-
-
-
-
 
     
 //  Melih's locators <<<<----
