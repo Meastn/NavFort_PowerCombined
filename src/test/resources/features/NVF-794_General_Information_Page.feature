@@ -23,7 +23,6 @@ Feature: General Information
     And User can see the delete button
     And User can see the add event button
 
-
     Scenario: Driver shall not see options on general information page
     Given User logs out
     When User logs in as a Driver

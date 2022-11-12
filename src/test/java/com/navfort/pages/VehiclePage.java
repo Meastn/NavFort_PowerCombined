@@ -95,6 +95,6 @@ public class VehiclePage {
     public WebElement viewSign2;
 
     
-//  Melih's locators <<<<----
+//  Melih's locators <<<<------
 
 }

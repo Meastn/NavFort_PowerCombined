@@ -12,8 +12,6 @@ public class BasePage {
        PageFactory.initElements(Driver.getDriver(),this);
    }
 
-
-
     @FindBy(xpath = "//h1[@class='oro-subtitle']")
     public WebElement homePageTitle;
 
@@ -32,10 +30,8 @@ public class BasePage {
  @FindBy(xpath = "//a[@class='no-hash']")
  public WebElement logoutMenuButton;
 
-
-
     
-    // Melih's locators
+    // Melih's locators--
 
 
 }
