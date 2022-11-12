@@ -36,14 +36,15 @@ public class BrowserUtils {
         try {
             Thread.sleep(millis);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+           // throw new RuntimeException();
+            e.printStackTrace(); //added by Serdar
         }
         System.out.println("Wait for " + second + " seconds and continue");
     }
     //   Creating a utility method for ExplicitWait so we dont have to repeat the lines
     public static void waitForInvisibility (WebElement webElement) {
-        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(0));
+       // Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));   //done by Serdar
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15)); //it was 0, changed to 15 seconds
         wait.until(ExpectedConditions.invisibilityOf(webElement));
     }
 

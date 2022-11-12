@@ -80,7 +80,7 @@ public class VehiclePage {
     public WebElement messageWarning;
 
 
-
+//Serdar's locators
     @FindBy(xpath = "//a[@title='Create Car']")
     public WebElement createCarButton;
 
