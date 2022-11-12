@@ -77,13 +77,14 @@ public class VehiclePage {
 
     @FindBy(className ="message")
     public WebElement messageWarning;
-    
-    @FindBy(xpath = "//a[@title='Create Car']")
-    public WebElement createCarButton;
-
+  
     //Melih's locators --->>>>>
     @FindBy(xpath = "//tbody[@class='grid-body']/tr[*]")
     public WebElement carsTableFirstRow;
+
+//Serdar's locators
+    @FindBy(xpath = "//a[@title='Create Car']")
+    public WebElement createCarButton;
 
     @FindBy(xpath = "//ul[contains(@data-options, 'true,')]")
     public WebElement threeDotBar;
