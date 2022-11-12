@@ -84,9 +84,13 @@ public class NVF_801_DeleteCarStepDefinitions {
     @When("user can delete the line")
     public void user_can_delete_the_line() {
 
+        vehiclePage.deleteSign.click();
+
     }
     @When("User see confirmation message")
     public void user_see_confirmation_message() {
+        vehiclePage.deleteYes.click();
+
 
     }
     @Then("Deleted item message is seen")

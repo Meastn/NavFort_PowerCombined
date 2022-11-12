@@ -79,6 +79,9 @@ public class VehiclePage {
     @FindBy(className ="message")
     public WebElement messageWarning;
 
+    @FindBy(xpath="//div[@class='flash-messages-holder']")
+    public WebElement itemDeleteMessage;
+
 
 
     @FindBy(xpath = "//a[@title='Create Car']")

@@ -3,7 +3,7 @@ Feature: Fleet Management Delete Car Functionality
   Background: The driver, sales manager and store manager use the
   fleet management home page.
 
-
+  @wip
   Scenario:Login as a driver
     Given user on the fleet home page as a driver
     When user enters the fleet vehicle page
