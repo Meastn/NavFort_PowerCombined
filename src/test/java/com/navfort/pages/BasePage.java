@@ -24,8 +24,7 @@ public class BasePage {
     @FindBy(xpath = "//a[@href='entity/Extend_Entity_Carreservation']")
     public WebElement vehiclesButton;
 
-// Melih's locators
-
+// Melih's locators ...
 
   @FindBy(xpath = "//*[@id='user-menu']/a/i")
     public WebElement userMenu;

@@ -81,7 +81,7 @@ public class VehiclePage {
     @FindBy(xpath = "//a[@title='Create Car']")
     public WebElement createCarButton;
 
-    //Melih's locators --->>>>
+    //Melih's locators --->>>>>
     @FindBy(xpath = "//tbody[@class='grid-body']/tr[*]")
     public WebElement carsTableFirstRow;
 

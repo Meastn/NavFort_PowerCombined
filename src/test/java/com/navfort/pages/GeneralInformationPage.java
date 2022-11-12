@@ -9,7 +9,7 @@ public class GeneralInformationPage {
     public GeneralInformationPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
-
+// some
     @FindBy(xpath = "/html/body/div[2]/div[2]/header/div[2]/ul/li[2]/a/span")
     public WebElement fleetTitleLevel;
 

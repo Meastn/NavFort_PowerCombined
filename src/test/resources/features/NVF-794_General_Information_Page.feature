@@ -15,7 +15,7 @@ Feature: General Information
     When User clicks on eye icon
     Then User can see the general information page
 
-
+@melih
   Scenario: Managers should see options on general information page
     Given User clicks fleet and vehicles menu items
     When User clicks any row
