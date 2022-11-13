@@ -1,9 +1,12 @@
 package com.navfort.pages;
 
+import com.navfort.utilities.BrowserUtils;
 import com.navfort.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class CreateCarPage extends BasePage{
    public CreateCarPage() {
@@ -35,7 +38,27 @@ public class CreateCarPage extends BasePage{
    @FindBy(xpath = "//select[@name='custom_entity_type[FuelType]']")
    public WebElement fuelTypeDropDown;
 
+   @FindBy(xpath = "//button[@class='btn btn-success action-button']")
+public WebElement saveButton;
 
+   @FindBy(xpath = "//div[text()='Entity saved']")
+   public WebElement entitySavedMessage;
+
+
+   @FindBy(xpath = "(//div[@class='loader-mask shown']/div)[2]") //added by Serdar in order to use in BrowserUtils.invisibilityOf
+   public List<WebElement> spinningWheel;
+
+   public void waitForLoadingIconToDisappear(){
+      int count=0;
+      while (spinningWheel.size()!=0 && count<7){
+         try {
+            Thread.sleep(1000);
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+         count++;
+      }
+   }
 
 
 

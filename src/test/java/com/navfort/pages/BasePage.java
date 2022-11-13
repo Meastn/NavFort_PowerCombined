@@ -41,4 +41,5 @@ public class BasePage {
 
    @FindBy(xpath = "(//div[@class='loader-mask shown']/div)[2]") //added by Serdar in order to use in BrowserUtils.invisibilityOf
    public WebElement spinningWheel;
+
 }
