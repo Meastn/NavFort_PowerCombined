@@ -2,6 +2,7 @@ package com.navfort.pages;
 
 import com.navfort.utilities.Driver;
 import org.checkerframework.checker.formatter.qual.Format;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -95,7 +96,23 @@ public class VehiclePage {
     @FindBy(css = "a.action\n.no-hash\n.\n.mode-icon-only\n.\n")
     public WebElement viewSign2;
 
+    @FindBy(xpath = "//table/tr[1]")
+    public List<WebElement> gridRowClickAction;
+
+    @FindBy (xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody")
+    public WebElement tableBody;
+
+    public void iterateTableRows (){
+        List <WebElement> rows= Driver.getDriver().findElements(By.xpath("//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr"));
+        List <String> rowData = new ArrayList<>();
+
+        for(int i=0; i<rows.size(); i++) {
+            WebElement tableRowPath = Driver.getDriver().findElement(By.xpath("//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr"));
+            rowData.add(tableRowPath.getText());
+        }
+
+    }
     
-//  Melih's locators <<<<------
+//  Melih's locators <<<<---------
 
 }

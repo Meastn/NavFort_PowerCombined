@@ -11,7 +11,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import junit.framework.ComparisonFailure;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidSelectorException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
@@ -55,8 +57,9 @@ public class NVF794_GeneralInformation_StepDefinitions {
 
     @Then("User can see the general information page")
     public void userCanSeeTheGeneralInformationPage() {
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.visibilityOf(vehiclePage.carsTable));
+//        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(20));
+//        wait.until(ExpectedConditions.visibilityOf(vehiclePage.carsTable));
+        BrowserUtils.sleep(15);
         String actualPageTitle = generalInformationPage.generalInformationPageTitle.getText();
         String expectedPageTitle = "General Information";
         Assert.assertEquals(actualPageTitle, expectedPageTitle);
@@ -64,7 +67,7 @@ public class NVF794_GeneralInformation_StepDefinitions {
 
     @Given("User clicks on eye icon")
     public void userClicksOnEyeIcon() {
-        BrowserUtils.sleep(10);
+        BrowserUtils.sleep(15);
         Actions action = new Actions(Driver.getDriver());
         action.moveToElement(vehiclePage.threeDots).perform();
 
@@ -76,22 +79,24 @@ public class NVF794_GeneralInformation_StepDefinitions {
 //            action.click(vehiclePage.viewSign).perform();
 //            vehiclePage.viewSign.click();
 //            vehiclePage.viewSign.click();
-
 //        action.scrollToElement(vehiclePage.threeDotBar).clickAndHold().perform();
 //        BrowserUtils.sleep(2);
-//        vehiclePage.threeDotBar.isDisplayed();
+//        vehiclePage.threeDotBar.isDisplayed();  ---
         action.clickAndHold(vehiclePage.threeDots).perform();
+        action.scrollToElement(vehiclePage.threeDotBar);
         vehiclePage.threeDots.click();
 
         // somehow this code throws JsonException and InvocationTargetException that avoids the code to run further.--------
         try {
-            BrowserUtils.sleep(5);
+            BrowserUtils.sleep(10);
             action.click(vehiclePage.viewSign2).perform();
         } catch (Exception s) {
             s.printStackTrace();
         }
 
     }
+
+
 
     @Then("User can see the edit button")
     public void userCanSeeTheEditButton() {
@@ -161,23 +166,36 @@ public class NVF794_GeneralInformation_StepDefinitions {
        }
 
 
-    @When("Data extracted from the first raw of the table")
-    public void dataExtractedFromTheFirstRawOfTheTable() {
+    @Then("Data from the table and car page matches correctly")
+    public void dataFromTheTableAndCarPageMatchesCorrectly() {
+        BrowserUtils.sleep(15);
+        List<String> vehiclesRow = new ArrayList<>();
 
-    }
+        for (int i = 2; i < 21; i++) {
+            try {
+                WebElement columnData = Driver.getDriver().findElement(By.xpath("//table[@class='grid table-hover table table-bordered table-condensed']/tbody/tr/td[" + i + "]"));
+                vehiclesRow.add(columnData.getText());
 
-    @And("User clicks first row")
-    public void userClicksFirstRow() {
+            } catch (org.openqa.selenium.NoSuchElementException e) {
+                e.printStackTrace();
+                vehiclesRow.add("null");
+            }
+        }
         BrowserUtils.sleep(20);
         vehiclePage.carsTableFirstRow.click();
-    }
+        List<String> infoPageRow = new ArrayList<>();
 
-    @And("Data extracted from the general information page")
-    public void dataExtractedFromTheGeneralInformationPage() {
+        for (int i = 1; i < 23; i++) {
+            WebElement rowData = Driver.getDriver().findElement(By.xpath("/html/body/div[2]/div[2]/div[1]/div[2]/div[3]/div[2]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div[" + i + "]/div/div"));
+            infoPageRow.add(rowData.getText());
+        }
 
-    }
-
-    @Then("Vehicle data from both sources should match correctly")
-    public void vehicleDataFromBothSourcesShouldMatchCorrectly() {
+        try {
+            for (int i = 0; i < 23; i++) {
+                Assert.assertEquals(infoPageRow.get(i), vehiclesRow.get(i));
+            }
+        } catch (ComparisonFailure e) {
+            e.printStackTrace();
+        }
     }
 }
