@@ -113,6 +113,6 @@ public class VehiclePage {
 
     }
     
-//  Melih's locators <<<<------
+//  Melih's locators <<<<---------
 
 }

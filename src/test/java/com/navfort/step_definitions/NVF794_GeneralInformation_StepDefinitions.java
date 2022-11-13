@@ -81,7 +81,7 @@ public class NVF794_GeneralInformation_StepDefinitions {
 //            vehiclePage.viewSign.click();
 //        action.scrollToElement(vehiclePage.threeDotBar).clickAndHold().perform();
 //        BrowserUtils.sleep(2);
-//        vehiclePage.threeDotBar.isDisplayed();
+//        vehiclePage.threeDotBar.isDisplayed();  ---
         action.clickAndHold(vehiclePage.threeDots).perform();
         action.scrollToElement(vehiclePage.threeDotBar);
         vehiclePage.threeDots.click();
