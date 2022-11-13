@@ -25,6 +25,7 @@ public class GeneralInformationPage {
     @FindBy(xpath = "/html/body/div[2]/div[2]/div[1]/div[2]/div[3]/div[2]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div[1]/div/div")
     public WebElement licensePlateData;
 
+
     @FindBy(xpath = "/html/body/div[2]/div[2]/div[1]/div[2]/div[3]/div[2]/div[2]/div[2]/div/div[1]/div[2]/div/div/div/div[2]/label")
     public WebElement tagsHeader;
 
