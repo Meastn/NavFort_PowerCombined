@@ -44,11 +44,22 @@ public class NVF_800_VehicleTableViewStepDefinitions {
     //---------------------------------
     @When("user click view icon on the three dot icon")
     public void userClickViewIconOnTheThreeDotIcon() {
+        actions=new Actions(Driver.getDriver());
+        try {
+            actions.moveToElement(vehiclePage.threeDots).perform();
+            actions.clickAndHold(vehiclePage.threeDots).perform();
+            vehiclePage.threeDots.click();
+            actions.click(vehiclePage.viewSign2).perform();
 
-       vehiclePage.threeDots.click();
-       vehiclePage.viewIcon.click();
+        } catch (Exception e) {
+            System.out.println("error occurred while getting view icon");
+           e.printStackTrace();
+
+        }
 
     }
+
+
     @When("user see all vehicle information under the General Information header")
     public void user_see_all_vehicle_under_the_general_information_header(List<String>carInfoList) {
 
