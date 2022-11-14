@@ -60,7 +60,8 @@ public class VehiclePage {
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")
     public WebElement threeDots;
 
-    @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']")
+  //  @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']")
+     @FindBy(xpath = "//ul[contains(@data-options, 'true,')]")
     public WebElement deleteBar;
 
     @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']//ul//li[3]")
@@ -77,7 +78,39 @@ public class VehiclePage {
 
     @FindBy(className ="message")
     public WebElement messageWarning;
-  
+
+    @FindBy(xpath = "//div[@class='flash-messages-holder']//div//div")
+    public WebElement itemDeletedMessage;
+
+    @FindBy(xpath = "//a[@class='add-filter-button']")
+    public WebElement manageFilters;
+
+     @FindBy(xpath = "//label[@title='Tags']")
+    public WebElement tagsBtn;
+
+    @FindBy(xpath = "//span[@class='filter-items']/div[2]/div[1]")
+    public WebElement tagsAll;
+
+    @FindBy(xpath = "//button[.='is any of']")
+    public WebElement isAnyOf;
+
+    @FindBy(xpath = "//a[.='is not any of']")
+     public WebElement selectIsAnyOf;
+
+     @FindBy(xpath = "//a[.='is any of']")
+     public WebElement selectIsNotAnyOf;
+
+     @FindBy(xpath = "//a[.='is any of']")
+     public WebElement inputIsAnyOf;
+
+     @FindBy(xpath = "//div[.='Compact']")
+     public WebElement compact;
+
+     @FindBy(xpath = "//div[.='Sedan']")
+     public WebElement sedan;
+
+
+
     //Melih's locators --->>>>>
     @FindBy(xpath = "//tbody[@class='grid-body']/tr[*]")
     public WebElement carsTableFirstRow;
