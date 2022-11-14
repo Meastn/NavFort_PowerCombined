@@ -13,13 +13,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import junit.framework.ComparisonFailure;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.InvalidSelectorException;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.json.JsonException;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -44,7 +42,7 @@ public class NVF794_GeneralInformation_StepDefinitions {
 
     @Given("User clicks fleet and vehicles menu items")
     public void userClicksFleetAndVehiclesMenuItems() {
-        BrowserUtils.sleep(15);
+        BrowserUtils.sleep(20);
         basePage.fleetButton.click();
         basePage.vehiclesButton.click();
     }
@@ -84,6 +82,7 @@ public class NVF794_GeneralInformation_StepDefinitions {
 //        vehiclePage.threeDotBar.isDisplayed();  ---
         action.clickAndHold(vehiclePage.threeDots).perform();
         action.scrollToElement(vehiclePage.threeDotBar);
+        BrowserUtils.sleep(5);
         vehiclePage.threeDots.click();
 
         // somehow this code throws JsonException and InvocationTargetException that avoids the code to run further.--------
@@ -120,8 +119,15 @@ public class NVF794_GeneralInformation_StepDefinitions {
     @Then("User logs out")
     public void userLogsOut() {
         BrowserUtils.sleep(10);
-        basePage.userMenu.click();
-        basePage.logoutMenuButton.click();
+        basePage.userMenuDropDown.click();
+        basePage.logoutButton.click();
+
+//        try {
+//            Thread.sleep(10000);
+//        } catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
+
     }
 
 
@@ -139,31 +145,35 @@ public class NVF794_GeneralInformation_StepDefinitions {
 
     @Then("User can not see the edit button")
     public void userCanNotSeeTheEditButton() {
-        boolean exist = generalInformationPage.editButton.isDisplayed();
-        try {
-            Assert.assertTrue(exist);
-        } catch (NoSuchElementException e) {
-            e.printStackTrace();
-        }
+
+
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(2));
+            wait.until(ExpectedConditions.invisibilityOf(generalInformationPage.editButton));
+
+
+
     }
 
     @And("User can not see the delete button")
     public void userCanNotSeeTheDeleteButton() {
-        try {
-            Assert.assertTrue(generalInformationPage.deleteButton.isDisplayed());
-        } catch (NoSuchElementException e) {
-            e.printStackTrace();
-        }
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.invisibilityOf(generalInformationPage.deleteButton));
+
     }
 
     @And("User can not see the add event button")
     public void userCanNotSeeTheAddEventButton() {
-       try {
-           Assert.assertTrue(generalInformationPage.addEventButton.isDisplayed());
-       } catch (NoSuchElementException e) {
-           e.printStackTrace();
-       }
-       }
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.invisibilityOf(generalInformationPage.addEventButton));
+
+    }
+//       try {
+          // Assert.assertTrue(generalInformationPage.addEventButton.isDisplayed());
+//       } catch (NoSuchElementException e) {
+//           e.printStackTrace();
+//       }
+//       }
 
 
     @Then("Data from the table and car page matches correctly")
