@@ -257,6 +257,30 @@ public class VehiclePage {
     @FindBy(xpath = "//input[@title='Location']")
     public WebElement locationFilterCheckBox;
 
+    //NVF-798 Grid Settings Kenan Locators  And Methods Begin
+    @FindBy(xpath = "//a[@title='Grid Settings']")
+    public WebElement gearIcon;
+
+    @FindBy(xpath = "//div[.='Grid Settings']")
+    public WebElement gridSettingsText;
+
+    @FindBy(xpath ="//input[@placeholder='Quick Search']")
+    public WebElement inputQuickSeach;
+
+    @FindBy ( xpath="//span[.='No columns found']")
+    public WebElement noColumnsFoundText;
+
+    @FindBy(xpath = "//span[@class='grid-header-cell__label']")
+    public List<WebElement> columnNames;
+
+    @FindBy(xpath = "//span[@title='Move column']")
+    public WebElement moveColumn;
+
+    @FindBy (xpath = "//td[@class='visibility-cell']")
+    public List<WebElement>  visibilityCells;
+
+    //NVF-798 Grid Settings Kenan Locators And Methods End
+
 
 
 
