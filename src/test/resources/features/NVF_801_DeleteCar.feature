@@ -12,6 +12,7 @@ Feature: Fleet Management Delete Car Functionality
     Then user sees the delete button
 
 
+
   Scenario:Login as sales manager
     Given user on the fleet home page as a sales manager
     When user enters the fleet vehicle page
@@ -32,6 +33,8 @@ Feature: Fleet Management Delete Car Functionality
     And user hover over three dots
     And user can delete the line
    Then User see warning message
+
+
 
   Scenario:Login as sales manager
     Given user on the fleet home page as a sales manager
@@ -57,11 +60,14 @@ Feature: Fleet Management Delete Car Functionality
     When User clicks any row of car list
     And User can see the delete button and delete the car row
     Then User can see the car deleted message
-
-
-
-  Scenario: Authorized user verify whether the deleted row is removed from Fleet-Vehicle page or not
-    Given user on the fleet home page as managers
-    When user enters the fleet vehicle page
+    Then Navigate back to vehicle page
     Then user check the deleted row is removed from Fleet-Vehicle page
+
+
+
+
+#  Scenario: Authorized user verify whether the deleted row is removed from Fleet-Vehicle page or not
+#    Given user on the fleet home page as managers
+#    When user enters the fleet vehicle page
+#    Then user check the deleted row is removed from Fleet-Vehicle page
 

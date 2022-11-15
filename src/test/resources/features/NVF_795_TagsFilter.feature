@@ -9,6 +9,8 @@ Feature: Fleet Management Tag Filter Functionality
     And user clicks the manage filters and select tags
     Then user sees Is Any Of and Is Not Any Of options
 
+
+
   Scenario: User selects 'Is Any Of' with 'Compact' option, the table should include corresponding value
     Given user on the fleet home page
     When user enters the fleet vehicle page
