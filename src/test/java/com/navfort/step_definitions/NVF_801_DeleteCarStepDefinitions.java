@@ -130,9 +130,8 @@ public class NVF_801_DeleteCarStepDefinitions {
         String actualTextCar = vehiclePage.licencePlateCell.getText();
 
         Assert.assertNotEquals(notExpectedLicensePlate, actualTextCar);
-
     }
-   
+
 }
 
 
