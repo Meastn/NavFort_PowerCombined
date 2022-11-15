@@ -1,3 +1,4 @@
+@NVF-798
 Feature:
   User Story :
 
@@ -48,9 +49,7 @@ Feature:
 
   Scenario:Column names in grid settings should be shown as below
     When user clicks on the gear icon
-    Then "actualColumnName" should be shown as "<expectedColumnName>"
-
-      | expectedColumnName        |
+    Then Column names should be shown as
       | Id                        |
       | License Plate             |
       | Tags                      |
@@ -72,12 +71,9 @@ Feature:
       | Horsepower Taxation       |
       | Power (KW)                |
 
-  Scenario Outline: User can find any column by typing the column name on "Quick Search" input box
-    When user type"<searchedColumnName>" to quick search box
+  Scenario : User can find any column by typing the column name on Quick Search input box
+    When user type ColumnName to quick search box
     Then user can find searched column
-
-    Examples: Column Values for Scenario
-      | searchedColumnName        |
       | Id                        |
       | License Plate             |
       | Tags                      |
@@ -98,6 +94,7 @@ Feature:
       | Horsepower                |
       | Horsepower Taxation       |
       | Power (KW)                |
+
 
   Scenario: User can select any column by clicking the column name
     When user select any column name
