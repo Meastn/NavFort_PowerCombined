@@ -38,28 +38,30 @@ Feature:
       | Horsepower Taxation       |
       | Power (KW)                |
 
-  Scenario : User can find any column by typing the column name on Quick Search input box
-    Then  user type ColumnName to quick search box user can find searched column
-      | Id                        |
-      | License Plate             |
-      | Tags                      |
-      | Driver                    |
-      | Location                  |
-      | Chassis Number            |
-      | Model Year                |
-      | Last Odometer             |
-      | Immatriculation Date      |
-      | First Contract Date       |
-      | Catalog Value (VAT Incl.) |
-      | Seats Number              |
-      | Doors Number              |
-      | Color                     |
-      | Transmission              |
-      | Fuel Type                 |
-      | CO2 Emissions             |
-      | Horsepower                |
-      | Horsepower Taxation       |
-      | Power (KW)                |
+    Scenario: user type to quick box and find column
+      Then user type ColumnName to quick search box user can find searched column
+        | Id                        |
+        | License Plate             |
+        | Tags                      |
+        | Driver                    |
+        | Location                  |
+        | Chassis Number            |
+        | Model Year                |
+        | Last Odometer             |
+        | Immatriculation Date      |
+        | First Contract Date       |
+        | Catalog Value (VAT Incl.) |
+        | Seats Number              |
+        | Doors Number              |
+        | Color                     |
+        | Transmission              |
+        | Fuel Type                 |
+        | CO2 Emissions             |
+        | Horsepower                |
+        | Horsepower Taxation       |
+        | Power (KW)                |
+
+
 
 
   Scenario: User can select any column by clicking the column name

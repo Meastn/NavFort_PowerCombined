@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NVF_798_Grid_Settings_Step_Definitions {
-    NVF_798_Grid_Settings_Step_Definitions nvf_798Grid_settings_step_definitions = new NVF_798_Grid_Settings_Step_Definitions();
+
     LoginPage loginPage=new LoginPage();
     BasePage basePage=new BasePage();
     VehiclePage vehiclePage=new VehiclePage();
