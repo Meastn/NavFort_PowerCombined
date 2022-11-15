@@ -61,11 +61,10 @@ public class VehiclePage {
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")
     public WebElement threeDots;
 
-  //  @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']")
-     @FindBy(xpath = "//ul[contains(@data-options, 'true,')]")
+    @FindBy(xpath = "//ul[contains(@data-options, 'true,')]")
     public WebElement deleteBar;
 
-    @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']//ul//li[3]")
+    @FindBy(xpath = "//li[@class='launcher-item'][3]//a")
     public WebElement deleteSign;
 
     @FindBy(xpath = "//div[@class='modal oro-modal-danger in']")
@@ -83,7 +82,11 @@ public class VehiclePage {
     @FindBy(xpath = "//div[@class='flash-messages-holder']//div//div")
     public WebElement itemDeletedMessage;
 
-    @FindBy(xpath = "//a[@class='add-filter-button']")
+
+
+    @FindBy(xpath = " //a[@title='Filters']")
+    public WebElement filtersBtn;
+  @FindBy(xpath = "//a[@class='add-filter-button']")
     public WebElement manageFilters;
 
      @FindBy(xpath = "//label[@title='Tags']")
@@ -92,7 +95,7 @@ public class VehiclePage {
     @FindBy(xpath = "//span[@class='filter-items']/div[2]/div[1]")
     public WebElement tagsAll;
 
-    @FindBy(xpath = "//button[.='is any of']")
+    @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
     public WebElement isAnyOf;
 
     @FindBy(xpath = "//a[.='is not any of']")
@@ -110,6 +113,16 @@ public class VehiclePage {
      @FindBy(xpath = "//div[.='Sedan']")
      public WebElement sedan;
 
+     @FindBy(xpath = "//button[@class='btn btn-primary filter-update']")
+     public WebElement update;
+
+    @FindBy(xpath = "//table/tbody//tr//td[3]")
+    public WebElement compactCell;
+    @FindBy(xpath = "//h5[@class='user-fieldset']/following-sibling::div/div/div[1]")
+    public WebElement deletedCarPlate;
+
+    @FindBy(xpath = "//table/tbody//tr//td[2]")
+    public WebElement licencePlateCell;
 
 
     //Melih's locators --->>>>>
