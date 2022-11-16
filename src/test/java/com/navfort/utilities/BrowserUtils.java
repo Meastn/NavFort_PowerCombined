@@ -78,7 +78,7 @@ public class BrowserUtils {
 
     public static void waitForClickable (WebElement webElement) {
 
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15)); //it was 0, changed to 15 seconds
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15)); //kenan it was 0, changed to 15 seconds
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }

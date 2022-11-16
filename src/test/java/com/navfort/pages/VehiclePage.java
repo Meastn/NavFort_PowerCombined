@@ -282,7 +282,7 @@ public class VehiclePage {
     @FindBy (xpath = "//td[@class='visibility-cell']")
     public List<WebElement>  visibilityCells;
 
-    //NVF-798 Grid Settings Kenan Locators And Methods End
+    //NVF-798 Grid Settings Kenan Locators And Methods Ends
 
 
 
