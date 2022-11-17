@@ -46,6 +46,12 @@ public class BasePage {
     //added by Serdar in order to use in BrowserUtils.invisibilityOf
     public WebElement spinningWheel;
 
+    @FindBy(xpath = "//div[@id='progressbar']") // added by kenan with id
+    public WebElement loadingBarKenan;
+
+    @FindBy(xpath = "//div[@class='loader-mask shown']")   //added by kenan in order to use in BrowserUtils.invisibilityOf
+    public WebElement spinningWheelKenan;
+
 
 
 
