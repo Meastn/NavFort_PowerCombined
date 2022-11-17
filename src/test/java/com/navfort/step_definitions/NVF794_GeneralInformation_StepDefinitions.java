@@ -85,7 +85,7 @@ public class NVF794_GeneralInformation_StepDefinitions {
         BrowserUtils.sleep(5);
         vehiclePage.threeDots.click();
 
-        // somehow this code throws JsonException and InvocationTargetException that avoids the code to run further.--------
+        // somehow this code throws JsonException and InvocationTargetException that   avoids the code to run further.--------
         try {
             BrowserUtils.sleep(10);
             action.click(vehiclePage.viewSign2).perform();
