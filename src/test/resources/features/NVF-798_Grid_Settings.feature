@@ -76,7 +76,7 @@ Feature:
     Then moved column order changed on the table
 
 
-  //comit
+
 
 
 
