@@ -61,10 +61,10 @@ public class VehiclePage {
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")
     public WebElement threeDots;
 
-    @FindBy(xpath = "//ul[contains(@data-options, 'true,')]")
+    @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']")
     public WebElement deleteBar;
 
-    @FindBy(xpath = "//li[@class='launcher-item'][3]//a")
+    @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu__action-cell launchers-dropdown-menu detach dropdown-menu__floating']//li//li[3]")
     public WebElement deleteSign;
 
     @FindBy(xpath = "//div[@class='modal oro-modal-danger in']")
@@ -82,7 +82,16 @@ public class VehiclePage {
     @FindBy(xpath = "//div[@class='flash-messages-holder']//div//div")
     public WebElement itemDeletedMessage;
 
+    @FindBy(id = "prependedInput")
+    public WebElement usernameInput;
 
+    @FindBy(id = "prependedInput2")
+    public WebElement passwordInput;
+
+    @FindBy(id = "_submit")
+    public WebElement loginBtn;
+
+    //Tags Filter user story
 
     @FindBy(xpath = " //a[@title='Filters']")
     public WebElement filtersBtn;
@@ -122,7 +131,7 @@ public class VehiclePage {
     public WebElement deletedCarPlate;
 
     @FindBy(xpath = "//table/tbody//tr//td[2]")
-    public WebElement licencePlateCell;
+    public WebElement licensePlateCell;
 
 
     //Melih's locators --->>>>>
