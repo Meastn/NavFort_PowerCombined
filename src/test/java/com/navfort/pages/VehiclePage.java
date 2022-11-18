@@ -56,6 +56,9 @@ public class VehiclePage {
 
     @FindBy(xpath = "//i[@class='fa-eye hide-text']/..")
     public WebElement viewIcon;
+
+    @FindBy(xpath = "//span[@class='grid-header-cell__label']")
+    public List<WebElement>TableEachColumnName;
     
     //Bilal's locators
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")

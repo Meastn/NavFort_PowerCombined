@@ -8,43 +8,20 @@ Feature: Seeing general vehicle information under the vehicles
 
 
   Scenario: User can see all vehicle information in a table
-    When user click view icon on the three dot icon
+    When user click anywhere at the row
     And user see all vehicle information under the General Information header
-      | License Plate             |
-      | Tags                      |
-      | Driver                    |
-      | Location                  |
-      | Chassis Number            |
-      | Model Year                |
-      | Last Odometer             |
-      | Immatriculation Date      |
-      | First Contract Date       |
-      | Catalog Value (VAT Incl.) |
-      | Seats Number              |
-      | Doors Number              |
-      | Color                     |
-      | Transmission              |
-      | Fuel Type                 |
-      | CO2 Emissions             |
-      | Horsepower                |
-      | Horsepower Taxation       |
-      | Logo                      |
-      | Vehicle Model             |
-      | Vehicle Make              |
-
     And user navigates back to the vehicles page
     Then user should be able to see exact informations on the table
 
   Scenario:  User can see the total page number and total vehicle recording
     Then user can see total page number and total recording of vehicles
-
+@WIP
   Scenario: User can go to next page clicking ">" button and can go to previous page clicking "<" button
-    When user enters next page button
-    Then user can go to the nextTablePage
-
+    When user enters next page button user can go to the next page
+    @WIP
   Scenario: User can go to next page clicking ">" button and can go to previous page clicking "<" button
-    When user enters previous page button
-    Then user can go to the previousTablePage
+    When user enters previous page button user can go to the previousTablePage
+
 
 
   Scenario: User can download table data in XLS or CSV format from "Export Grid"

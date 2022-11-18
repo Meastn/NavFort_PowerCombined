@@ -19,10 +19,13 @@ import java.util.List;
 
 public class NVF_800_VehicleTableViewStepDefinitions {
 
-     LoginPage loginPage=new LoginPage();
-     BasePage basePage=new BasePage();
-     VehiclePage vehiclePage=new VehiclePage();
-        Actions actions;
+    LoginPage loginPage = new LoginPage();
+    BasePage basePage = new BasePage();
+    VehiclePage vehiclePage = new VehiclePage();
+    Actions actions;
+    List<String> vehiclesInfoList = new ArrayList<>();
+
+    List<String> listOfCarTableColumnNames = new ArrayList<>();
 
 
     @Given("user is login with valid credentials and on the vehicles page placed under the Fleet Dropdown")
@@ -42,43 +45,56 @@ public class NVF_800_VehicleTableViewStepDefinitions {
 
 
     //---------------------------------
-    @When("user click view icon on the three dot icon")
-    public void userClickViewIconOnTheThreeDotIcon() {
-        actions=new Actions(Driver.getDriver());
-        try {
-            actions.moveToElement(vehiclePage.threeDots).perform();
-            actions.clickAndHold(vehiclePage.threeDots).perform();
-            vehiclePage.threeDots.click();
-            actions.click(vehiclePage.viewSign2).perform();
+//    @When("user click view icon on the three dot icon")
+//    public void userClickViewIconOnTheThreeDotIcon() {
+//        actions = new Actions(Driver.getDriver());
+//        try {
+//            actions.clickAndHold(vehiclePage.threeDots).perform();
+//            vehiclePage.threeDots.click();
+//            actions.click(vehiclePage.viewSign2).perform();
+//
+//        } catch (Exception e) {
+//            System.out.println("error occurred while getting view icon");
+//            e.printStackTrace();
+//
+//        }
+//
+//    }
+    @When("user click anywhere at the row")
+    public void userClickAnywhereAtTheRow() {
 
-        } catch (Exception e) {
-            System.out.println("error occurred while getting view icon");
-           e.printStackTrace();
-
-        }
-
+        vehiclePage.carsTableFirstRow.click();
+        BrowserUtils.sleep(5);
     }
 
 
     @When("user see all vehicle information under the General Information header")
-    public void user_see_all_vehicle_under_the_general_information_header(List<String>carInfoList) {
+    public void user_see_all_vehicle_under_the_general_information_header() {
 
-        List<String>vehiclesInfoList=new ArrayList<>();
 
-        for (WebElement controlKeyLabel : vehiclePage.controlKeyLabels) {
-            vehiclesInfoList.add(controlKeyLabel.getText());
+        for (int i = 0; i < 9; i++) {
+
+            vehiclesInfoList.add(vehiclePage.controlKeyLabels.get(i).getText().toLowerCase());
         }
 
+
     }
+
     @When("user navigates back to the vehicles page")
     public void user_navigates_back_to_the_vehicles_page() {
      Driver.getDriver().navigate().back();
     }
+
     @Then("user should be able to see exact informations on the table")
     public void user_should_be_able_to_see_exact_informations_on_the_table() {
 
-        System.out.println("yolda geliyor");
-            
+        for (int i = 0; i < 9; i++) {
+            listOfCarTableColumnNames.add(vehiclePage.TableEachColumnName.get(i).getText().toLowerCase());
+
+        }
+        Assert.assertEquals(vehiclesInfoList, listOfCarTableColumnNames);
+
+
     }
 
 
@@ -88,35 +104,40 @@ public class NVF_800_VehicleTableViewStepDefinitions {
     @Then("user can see total page number and total recording of vehicles")
     public void userCanSeeTotalPageNumberAndTotalRecordingOfVehicles() {
 
-       Assert.assertTrue(vehiclePage.totalPgeNumber.isDisplayed());
-       Assert.assertTrue(vehiclePage.totalVehicleRecords.isDisplayed());
+        Assert.assertTrue(vehiclePage.totalPgeNumber.isDisplayed());
+        Assert.assertTrue(vehiclePage.totalVehicleRecords.isDisplayed());
 
     }
 
 
     //AC 3----->User can go to next page clicking ">" button
 
-    @When("user enters next page button")
-    public void userEntersNextPageButton() {
+
+
+    @When("user enters next page button user can go to the next page")
+    public void userEntersNextPageButtonUserCanGoToTheNextPage() {
+        String currentText = vehiclePage.numberBetweenTheNextAndPreviousButton.getText();
+
         vehiclePage.nextButton.click();
-    }
+        BrowserUtils.sleep(2);
+        String afterNextPage = vehiclePage.numberBetweenTheNextAndPreviousButton.getText();
 
-
-    @Then("user can go to the nextTablePage")
-    public void userCanGoToTheNextTablePage() {
-        
+        Assert.assertFalse(currentText.equals(afterNextPage));
     }
 
 
     //AC3_2 ---> user can go to previous page clicking "<" button
 
-    @When("user enters previous page button")
-    public void userEntersPreviousPageButton() {
-        vehiclePage.previousButton.click();
-    }
+    @When("user enters previous page button user can go to the previousTablePage")
+    public void userEntersPreviousPageButtonUserCanGoToThePreviousTablePage() {
+        String currentPageNumber = vehiclePage.numberBetweenTheNextAndPreviousButton.getText();
+        vehiclePage.nextButton.click();
 
-    @Then("user can go to the previousTablePage")
-    public void userCanGoToThePreviousTablePage() {
+        BrowserUtils.sleep(2);
+        vehiclePage.previousButton.click();
+        String currentPageNumberAfterClickingOnePageForwardOnePageBackward= vehiclePage.numberBetweenTheNextAndPreviousButton.getText();
+        Assert.assertTrue(currentPageNumber.equals(currentPageNumberAfterClickingOnePageForwardOnePageBackward));
+
     }
 
 
@@ -141,7 +162,7 @@ public class NVF_800_VehicleTableViewStepDefinitions {
     @Then("user can see the successfully download message")
     public void userCanSeeTheSuccessfullyDownloadMessage() {
 
-           Assert.assertTrue( vehiclePage.downloadMessage.isDisplayed());
+        Assert.assertTrue(vehiclePage.downloadMessage.isDisplayed());
     }
 
 
