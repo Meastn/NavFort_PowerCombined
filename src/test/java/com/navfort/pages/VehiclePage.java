@@ -279,16 +279,19 @@ public class VehiclePage {
     @FindBy ( xpath="//span[.='No columns found']")
     public WebElement noColumnsFoundText;
 
-    @FindBy(xpath = "//span[@class='grid-header-cell__label']")
+    @FindBy(xpath = "//td[@class='title-cell']")
     public List<WebElement> columnNames;
 
+    @FindBy(xpath = "//span[@class='grid-header-cell__label']")
+    public List<WebElement> headerCells;
+
     @FindBy(xpath = "//span[@title='Move column']")
-    public WebElement moveColumn;
+    public List<WebElement> moveColumns;
 
     @FindBy (xpath = "//td[@class='visibility-cell']")
     public List<WebElement>  visibilityCells;
 
-    //NVF-798 Grid Settings Kenan Locators And Methods End
+    //NVF-798 Grid Settings Kenan Locators And Methods Ends
 
 
 
