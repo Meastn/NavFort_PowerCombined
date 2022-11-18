@@ -3,6 +3,7 @@ Feature: Fleet Management Tag Filter Functionality
   Background: As a user, I should be able to use "Tags" filter under 'Fleet-Vehicles' page
 
 
+
   Scenario: User able to use "Tags" filter
     Given user on the fleet home page
     When user enters the fleet vehicle page

@@ -23,31 +23,32 @@ public class NVF_795_TagsFilterStepDefinitions {
     public void user_on_the_fleet_home_page() {
         Driver.getDriver().get("https://qa.navfort.com/");
         loginPage.loginAsSalesManager();
-        BrowserUtils.sleep(5);
+        BrowserUtils.sleep(10);
         basePage.fleetButton.click();
         BrowserUtils.sleep(2);
         basePage.vehiclesButton.click();
+        BrowserUtils.sleep(5);
 
     }
     @When("user clicks the manage filters and select tags")
     public void user_clicks_the_manage_filters_and_select_tags() {
         vehiclePage.filtersBtn.click();
-        BrowserUtils.sleep(2);
+        BrowserUtils.sleep(5);
       //  filter_genaralPage.manage_filter.click();
-        BrowserUtils.sleep(2);
+        BrowserUtils.sleep(3);
         vehiclePage.manageFilters.click();
-        BrowserUtils.sleep(2);
+        BrowserUtils.sleep(3);
          vehiclePage.tagsBtn.click();
 
 
     }
     @Then("user sees Is Any Of and Is Not Any Of options")
     public void user_sees_ıs_any_of_and_ıs_not_any_of_options() {
-
+        BrowserUtils.sleep(2);
         vehiclePage.tagsAll.click();
         BrowserUtils.sleep(2);
         vehiclePage.isAnyOf.click();
-
+        BrowserUtils.sleep(2);
         vehiclePage.selectIsAnyOf.isDisplayed();
         BrowserUtils.sleep(2);
         vehiclePage.selectIsNotAnyOf.isDisplayed();
