@@ -11,6 +11,7 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -47,7 +48,7 @@ public class NVF796_CreateCar_StepDef {
 
    @Then("user see create car button on the right side")
    public void user_see_create_car_button_on_the_right_side() {
-      BrowserUtils.waitForInvisibility(basePage.spinningWheel);
+      createCarPage.waitForLoadingIconToDisappear();
       Assert.assertTrue(vehiclePage.createCarButton.isDisplayed());
    }
 
@@ -62,7 +63,7 @@ public class NVF796_CreateCar_StepDef {
    public void userIsOnTheCreateCarPage() {
       Driver.getDriver().get(ConfigurationReader.getProperty("url"));
       loginPage.loginAsSalesManager();
-      BrowserUtils.waitForInvisibility(basePage.spinningWheel);
+      createCarPage.waitForLoadingIconToDisappear();
       Actions actions = new Actions(Driver.getDriver());
       actions.moveToElement(basePage.fleetButton).perform();
 
@@ -89,10 +90,12 @@ public class NVF796_CreateCar_StepDef {
       createCarPage.chassisNumberInputBox.sendKeys("0123456789");
       createCarPage.modelYearInputBox.sendKeys("2020");
       Select select1 = new Select(createCarPage.transmissionDropown);
+
       Select select2 = new Select(createCarPage.fuelTypeDropDown);
       select1.selectByVisibleText("Manual");
+      BrowserUtils.sleep(5);
       select2.selectByVisibleText("Electric");
-
+//BrowserUtils.sleep(3);
    }
 
    @And("user keeps {string} field empty")
@@ -103,7 +106,9 @@ public class NVF796_CreateCar_StepDef {
             break;
 
          case "Tag":
-            createCarPage.juniorCheckBox.clear();
+            createCarPage.juniorCheckBox.click();
+            createCarPage.seniorCheckBox.click();
+            BrowserUtils.sleep(5);
             break;
 
          case "Driver":
@@ -119,16 +124,15 @@ public class NVF796_CreateCar_StepDef {
             break;
 
          case "Transmission":
-            Select select1 = new Select(createCarPage.transmissionDropown);
-            select1.deselectAll();
+            createCarPage.deselectTransmissionbutton.click();
+            BrowserUtils.sleep(5);
             break;
 
          case "Fuel Type":
-            Select select2 = new Select(createCarPage.fuelTypeDropDown);
-            select2.deselectAll();
+            createCarPage.deselectfuelTypeButton.click();
             break;
       }
-      BrowserUtils.sleep(5);
+    //  BrowserUtils.sleep(5);
    }
 
    @And("user clicks save button")
@@ -182,6 +186,45 @@ public class NVF796_CreateCar_StepDef {
    @Then("user see {string} message")
    public void userSeeMessage(String entitySavedMessage) {
       Assert.assertTrue(createCarPage.entitySavedMessage.isDisplayed());
+   }
+
+   @When("user enters data which only contains digit to Licence Plate field")
+   public void userEntersDataWhichOnlyContainsDigitToLicencePlateField() {
+      createCarPage.licencePlateInputBox.sendKeys("111111");
+   }
+
+   @And("user passes to next field by Tab Key")
+   public void userPassesToNextFieldByTabKey() {
+      Actions actions= new Actions(Driver.getDriver());
+      actions.sendKeys(Keys.TAB);
+   }
+
+   @Then("user see {string} warning message")
+   public void userSeeWarningMessage(String arg0) {
+
+      Assert.fail("user doesn't warning message");
+   }
+
+   @When("user enters data which only contains letters to Licence Plate field")
+   public void userEntersDataWhichOnlyContainsLettersToLicencePlateField() {
+      createCarPage.licencePlateInputBox.sendKeys("aaaaaa");
+   }
+
+   @When("user enters data which contains both letters and digits to {string} field")
+   public void userEntersDataWhichContainsBothLettersAndDigitsToLicencePlateField(String fieldName) {
+
+      if (fieldName.equals("Licence Plate")) {
+         createCarPage.licencePlateInputBox.sendKeys("06ASDF06");
+      } else if (fieldName.equals("Driver")){
+         createCarPage.driverInputBox.sendKeys("");
+      }
+
+   }
+
+   @Then("user successfully passes to next field without seeing warning message")
+   public void userSuccessfullyPassesToNextFieldWithoutSeeingWarningMessage() {
+
+      Assert.assertTrue(true);
    }
 }
 
