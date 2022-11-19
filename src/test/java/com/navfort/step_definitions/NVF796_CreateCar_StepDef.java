@@ -1,5 +1,6 @@
 package com.navfort.step_definitions;
 
+import com.github.javafaker.Faker;
 import com.navfort.pages.*;
 import com.navfort.utilities.BrowserUtils;
 import com.navfort.utilities.ConfigurationReader;
@@ -132,7 +133,7 @@ public class NVF796_CreateCar_StepDef {
             createCarPage.deselectfuelTypeButton.click();
             break;
       }
-    //  BrowserUtils.sleep(5);
+      //  BrowserUtils.sleep(5);
    }
 
    @And("user clicks save button")
@@ -188,35 +189,48 @@ public class NVF796_CreateCar_StepDef {
       Assert.assertTrue(createCarPage.entitySavedMessage.isDisplayed());
    }
 
-   @When("user enters data which only contains digit to Licence Plate field")
-   public void userEntersDataWhichOnlyContainsDigitToLicencePlateField() {
-      createCarPage.licencePlateInputBox.sendKeys("111111");
+   @When("user enters data which only contains digit to {string} field")
+   public void userEntersDataWhichOnlyContainsDigitToLicencePlateField(String fieldName) {
+      Faker faker = new Faker();
+      if (fieldName.equals("Licence Plate")) {
+         createCarPage.licencePlateInputBox.sendKeys(faker.numerify("#######"));
+      } else if (fieldName.equals("Driver")) {
+         createCarPage.driverInputBox.sendKeys(faker.numerify("#######"));
+      }
    }
 
    @And("user passes to next field by Tab Key")
    public void userPassesToNextFieldByTabKey() {
-      Actions actions= new Actions(Driver.getDriver());
-      actions.sendKeys(Keys.TAB);
+      Actions actions = new Actions(Driver.getDriver());
+      actions.sendKeys(Keys.TAB).perform();
+//      BrowserUtils.sleep(5);
    }
 
    @Then("user see {string} warning message")
    public void userSeeWarningMessage(String arg0) {
 
-      Assert.fail("user doesn't warning message");
+      Assert.fail("user doesn't see warning message");
    }
 
-   @When("user enters data which only contains letters to Licence Plate field")
-   public void userEntersDataWhichOnlyContainsLettersToLicencePlateField() {
-      createCarPage.licencePlateInputBox.sendKeys("aaaaaa");
+   @When("user enters data which only contains letters to {string} field")
+   public void userEntersDataWhichOnlyContainsLettersToLicencePlateField(String fieldName) {
+      Faker faker = new Faker();
+      if (fieldName.equals("Licence Plate")) {
+         createCarPage.licencePlateInputBox.sendKeys(faker.letterify("???????"));
+      } else if (fieldName.equals("Chassis Number")) {
+         createCarPage.chassisNumberInputBox.sendKeys(faker.letterify("???????"));
+      } else if (fieldName.equals("Model Year")) {
+         createCarPage.modelYearInputBox.sendKeys(faker.letterify("???????"));
+      }
    }
 
    @When("user enters data which contains both letters and digits to {string} field")
    public void userEntersDataWhichContainsBothLettersAndDigitsToLicencePlateField(String fieldName) {
-
+      Faker faker = new Faker();
       if (fieldName.equals("Licence Plate")) {
-         createCarPage.licencePlateInputBox.sendKeys("06ASDF06");
-      } else if (fieldName.equals("Driver")){
-         createCarPage.driverInputBox.sendKeys("");
+         createCarPage.licencePlateInputBox.sendKeys(faker.bothify("####????"));
+      } else if (fieldName.equals("Driver")) {
+         createCarPage.driverInputBox.sendKeys(faker.bothify("####????"));
       }
 
    }
@@ -225,6 +239,57 @@ public class NVF796_CreateCar_StepDef {
    public void userSuccessfullyPassesToNextFieldWithoutSeeingWarningMessage() {
 
       Assert.assertTrue(true);
+   }
+
+   @Then("user see {string} field is still empty")
+   public void userSeeFieldIsStillEmpty(String fieldName) {
+      if (fieldName.equals("Chassis Number")) {
+         createCarPage.chassisNumberInputBox.getAttribute("value").equals("");
+      }
+   }
+
+
+   @When("user enters {int} as Model Year")
+   public void userEntersAsModelYear(int year) {
+   }
+
+   @When("user enters {string} as Model Year")
+   public void userEntersAsModelYear(String year) {
+      createCarPage.modelYearInputBox.sendKeys(year);
+
+   }
+
+   @When("user select Manuel and Automatic options in Transmission dropdown field respectively")
+   public void userSelectManuelAndAutomaticOptionsInTransmissionDropdownFieldRespectively() {
+      Select select1 = new Select(createCarPage.transmissionDropown);
+      select1.selectByVisibleText("Manual");
+      select1.selectByVisibleText("Automatic");
+
+   }
+
+   @Then("user see only the last one \\(Automatic) is selected")
+   public void userSeeOnlyTheLastOneAutomaticIsSelected() {
+      Select select1 = new Select(createCarPage.transmissionDropown);
+      List<WebElement> allSelectedOptions = select1.getAllSelectedOptions();
+      for (WebElement eachSelectedOption : allSelectedOptions) {
+         Assert.assertFalse(eachSelectedOption.getText().equals("Manuel"));
+      }
+   }
+
+   @When("user select  Diesel and Electric options in Fuel Type dropdown field respectively")
+   public void userSelectDieselAndElectricOptionsInFuelTypeDropdownFieldRespectively() {
+      Select select2 = new Select(createCarPage.fuelTypeDropDown);
+      select2.selectByVisibleText("Diesel");
+      select2.selectByVisibleText("Electric");
+   }
+
+   @Then("user see only the last one \\(Electric) is selected")
+   public void userSeeOnlyTheLastOneElectricIsSelected() {
+      Select select2 = new Select(createCarPage.fuelTypeDropDown);
+      List<WebElement> allSelectedOptions = select2.getAllSelectedOptions();
+      for (WebElement eachSelectedOption : allSelectedOptions) {
+         Assert.assertFalse(eachSelectedOption.getText().equals("Diesel"));
+      }
    }
 }
 
