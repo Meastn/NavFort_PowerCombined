@@ -296,6 +296,14 @@ public class VehiclePage {
 
     //NVF-798 Grid Settings Kenan Locators And Methods Ends
 
+    //Huseyin's locator
+
+    @FindBy (xpath = "//tbody[@class='grid-body']/tr[2]")
+    public WebElement secondRowOfCarList;
+
+    @FindBy (xpath = "//a[text()='Add Event']")
+    public WebElement addEventButton;
+
 
 
 
