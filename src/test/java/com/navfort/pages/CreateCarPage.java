@@ -3,6 +3,7 @@ package com.navfort.pages;
 import com.navfort.utilities.BrowserUtils;
 import com.navfort.utilities.Driver;
 import io.cucumber.java.zh_cn.假如;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -45,6 +46,61 @@ public class CreateCarPage extends BasePage {
    @FindBy(xpath = "(//abbr)[2]")
    public WebElement deselectfuelTypeButton;
 
+   @FindBy(xpath = "//input[@name='custom_entity_type[Location]']")
+   public WebElement locationInputBox;
+
+   @FindBy(xpath = "//input[@name='custom_entity_type[LastOdometer]']")
+   public WebElement lastOdometerInputBox;
+
+   @FindBy(xpath = "//input[contains(@id,'date_selector_custom_entity_type_ImmatriculationDate')]")
+   public WebElement ImmatriculationDate;
+
+   @FindBy(xpath = "(//span[text()='This value is not a valid date.'])[1]")
+   public WebElement immatriculationDateErrorMessage;
+
+   @FindBy(xpath = "//table//a[text()='12']")
+   public WebElement dateFromCalendarPopUp_6Nov2022;
+
+   @FindBy(xpath = "//div[@class='loader-mask shown']")
+   //added from Yakup's approach  in order to use in BrowserUtils.invisibilityOf
+   public WebElement loaderMask;
+
+   @FindBy(xpath = "//div[@class='loader-mask shown']")
+   //added from Yakup's approach  in order to use in BrowserUtils.invisibilityOf
+   public List<WebElement> loaderMaskList;
+
+   @FindBy(xpath = "(//span[text()='This value is not a valid date.'])[2]")
+   public WebElement firstContanctDateErrorMessage;
+
+
+   @FindBy(xpath = "//input[contains(@id,'date_selector_custom_entity_type_FirstContractDate')]")
+   public WebElement firstContactDate;
+
+   @FindBy(xpath = "//input[contains(@id,'custom_entity_type_CatalogValue')]")
+   public WebElement CatalogValue;
+
+   @FindBy(xpath = "//input[contains(@id,'custom_entity_type_SeatsNumber')]")
+   public WebElement SeatsNumber;
+
+   @FindBy(xpath = "//input[contains(@id,'custom_entity_type_DoorsNumber')]")
+   public WebElement DoorsNumber;
+
+   @FindBy(xpath = "//input[contains(@id,'custom_entity_type_Color')]")
+   public WebElement Color;
+
+   @FindBy(xpath = "//input[contains(@id,'custom_entity_type_CO2Emissions')]")
+   public WebElement CO2Emissions;
+
+   @FindBy(xpath = "//input[contains(@id,'custom_entity_type_Horsepower')]")
+   public WebElement Horsepower;
+
+   @FindBy(xpath = "//input[contains(@id,'custom_entity_type_HorsepowerTaxation')]")
+   public WebElement HorsepowerTaxation;
+
+   @FindBy(xpath = "//input[contains(@id,'custom_entity_type_Power')]")
+   public WebElement Power;
+
+
    @FindBy(xpath = "//button[@class='btn btn-success action-button']")
    public WebElement saveButton;
 
@@ -56,16 +112,30 @@ public class CreateCarPage extends BasePage {
    //added by Serdar in order to use in BrowserUtils.invisibilityOf
    public List<WebElement> spinningWheel;
 
-   public void waitForLoadingIconToDisappear() {
-      int count = 0;
-      while (spinningWheel.size() != 0 && count < 7) {
-         try {
-            Thread.sleep(1000);
-         } catch (InterruptedException e) {
-            e.printStackTrace();
-         }
-         count++;
+   public WebElement getWebElement(String idStartsWith) {
+     WebElement element;
+      if (idStartsWith.equals("ImmatriculationDate")) {
+          element = Driver.getDriver().findElement(By.xpath("//input[starts-with(@id,'date_selector_custom_entity_type_ImmatriculationDate')]"));
+      } else if  (idStartsWith.equals("FirstContractDate")) {
+         element = Driver.getDriver().findElement(By.xpath("//input[starts-with(@id,'date_selector_custom_entity_type_FirstContractDate')]"));
       }
+       else{
+            element = Driver.getDriver().findElement(By.xpath("//input[starts-with(@id,'custom_entity_type_" + idStartsWith + "')]"));
+         }
+         return element;
    }
 
-}
+      public void waitForLoadingIconToDisappear() {
+         int count = 0;
+         while (spinningWheel.size() != 0 && count < 10) {
+            try {
+               Thread.sleep(1000);
+            } catch (InterruptedException e) {
+               e.printStackTrace();
+            }
+            count++;
+         }
+      }
+
+   }
+
