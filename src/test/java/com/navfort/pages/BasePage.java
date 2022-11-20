@@ -52,6 +52,12 @@ public class BasePage {
     @FindBy(xpath = "//div[@class='loader-mask shown']")   //added by kenan in order to use in BrowserUtils.invisibilityOf
     public WebElement spinningWheelKenan;
 
+    @FindBy (xpath = "//li[@class='dropdown dropdown-level-1']")
+    public WebElement fleetButtonForDriver;
+
+    @FindBy(xpath = "//span[@class='title title-level-2']")
+    public WebElement vehicleButtonForDriver;
+
 
 
 
