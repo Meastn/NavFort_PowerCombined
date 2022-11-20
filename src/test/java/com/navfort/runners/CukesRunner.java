@@ -21,8 +21,8 @@ import org.junit.runner.RunWith;
 
 
 
-            dryRun = false,
-            tags ="@wipSerdar",
+            dryRun = true,
+            tags ="",
 
 
             publish = false
