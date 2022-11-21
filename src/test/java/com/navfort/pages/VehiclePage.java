@@ -59,6 +59,9 @@ public class VehiclePage {
 
     @FindBy(xpath = "//span[@class='grid-header-cell__label']")
     public List<WebElement>TableEachColumnName;
+
+    @FindBy(xpath = "//select")
+    public WebElement manageFiltersSelectDropdown;
     
     //Bilal's locators
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")

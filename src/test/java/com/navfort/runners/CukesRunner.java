@@ -21,8 +21,8 @@ import org.junit.runner.RunWith;
 
 
 
-            dryRun = true,
-            tags ="",
+            dryRun = false,
+            tags ="@nav_805",
 
 
             publish = false
