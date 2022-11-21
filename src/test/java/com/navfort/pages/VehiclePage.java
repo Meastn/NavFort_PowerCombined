@@ -96,7 +96,14 @@ public class VehiclePage {
 
     //Tags Filter user story
 
-    @FindBy(xpath = " //a[@title='Filters']")
+    @FindBy(xpath = "//li[@class='dropdown dropdown-level-1'][1]")
+    public WebElement fleetBtn;
+
+    @FindBy(xpath = "//span[.='Vehicles']")
+    public WebElement vehiclesBtn;
+
+    @FindBy(xpath = "//a[@title='Filters']")
+//    @FindBy(xpath = "//a[@class='action btn mode-icon-only pressed']")
     public WebElement filtersBtn;
   @FindBy(xpath = "//a[@class='add-filter-button']")
     public WebElement manageFilters;
@@ -110,10 +117,11 @@ public class VehiclePage {
     @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
     public WebElement isAnyOf;
 
-    @FindBy(xpath = "//a[.='is not any of']")
+    @FindBy(xpath = "//a[.='is any of']")
+//    @FindBy(xpath = "//li[@class='active']//a[.='is any of']")
      public WebElement selectIsAnyOf;
 
-     @FindBy(xpath = "//a[.='is any of']")
+     @FindBy(xpath = "//a[.='is not any of']")
      public WebElement selectIsNotAnyOf;
 
      @FindBy(xpath = "//a[.='is any of']")

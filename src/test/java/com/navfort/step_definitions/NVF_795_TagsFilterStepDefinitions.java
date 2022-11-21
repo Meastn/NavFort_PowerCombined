@@ -18,68 +18,74 @@ public class NVF_795_TagsFilterStepDefinitions {
     GeneralInformationPage generalInformationPage= new GeneralInformationPage();
     Actions actions=new Actions(Driver.getDriver());
 
+    @Given("user on the fleet vehicle page")
+    public void user_on_the_fleet_vehicle_page() {
 
-    @Given("user on the fleet home page")
-    public void user_on_the_fleet_home_page() {
-        Driver.getDriver().get("https://qa.navfort.com/");
-        loginPage.loginAsSalesManager();
         BrowserUtils.sleep(10);
-        basePage.fleetButton.click();
-        BrowserUtils.sleep(2);
-        basePage.vehiclesButton.click();
+        Driver.getDriver().get("https://qa.navfort.com/");
+        vehiclePage.usernameInput.sendKeys("salesmanager101");
+        vehiclePage.passwordInput.sendKeys("UserUser123");
+        vehiclePage.loginBtn.click();
         BrowserUtils.sleep(5);
+        actions.moveToElement(vehiclePage.fleetBtn).perform();
+        vehiclePage.vehiclesBtn.click();
 
     }
     @When("user clicks the manage filters and select tags")
     public void user_clicks_the_manage_filters_and_select_tags() {
+
+        BrowserUtils.sleep(20);
         vehiclePage.filtersBtn.click();
         BrowserUtils.sleep(5);
-      //  filter_genaralPage.manage_filter.click();
-        BrowserUtils.sleep(3);
         vehiclePage.manageFilters.click();
-        BrowserUtils.sleep(3);
-         vehiclePage.tagsBtn.click();
-
+        BrowserUtils.sleep(5);
+        vehiclePage.tagsBtn.click();
 
     }
-    @Then("user sees Is Any Of and Is Not Any Of options")
-    public void user_sees_ıs_any_of_and_ıs_not_any_of_options() {
-        BrowserUtils.sleep(2);
+    @Then("user sees is Any Of and is Not Any Of options")
+    public void user_sees_is_any_of_and_is_not_any_of_options() {
+
+        BrowserUtils.sleep(10);
         vehiclePage.tagsAll.click();
-        BrowserUtils.sleep(2);
+        BrowserUtils.sleep(1);
         vehiclePage.isAnyOf.click();
-        BrowserUtils.sleep(2);
         vehiclePage.selectIsAnyOf.isDisplayed();
-        BrowserUtils.sleep(2);
-        vehiclePage.selectIsNotAnyOf.isDisplayed();
-
 
     }
 
-    @When("user selects Is Any Of with Compact option")
-    public void user_selects_ıs_any_of_with_compact_option() {
+    @When("user selects is Any Of with Compact option")
+    public void user_selects_is_any_of_with_compact_option() {
 
+        BrowserUtils.sleep(10);
+        vehiclePage.tagsAll.click();
+        BrowserUtils.sleep(5);
+        vehiclePage.isAnyOf.click();
+        BrowserUtils.sleep(3);
         vehiclePage.selectIsAnyOf.click();
+        BrowserUtils.sleep(2);
         vehiclePage.inputIsAnyOf.click();
         BrowserUtils.sleep(2);
         vehiclePage.compact.click();
         BrowserUtils.sleep(2);
         vehiclePage.update.click();
 
-
     }
     @Then("user sees the list of Compact results")
     public void user_sees_the_list_of_compact_results() {
-
+        BrowserUtils.sleep(5);
         String expectedText = "Compact";
         String actualText = vehiclePage.compactCell.getText();
+        BrowserUtils.sleep(5);
         Assert.assertEquals(expectedText, actualText);
 
     }
 
-    @When("user selects Is Not Any Of with Compact option")
-    public void user_selects_ıs_not_any_of_with_compact_option() {
-
+    @When("user selects is Not Any Of with Compact option")
+    public void user_selects_is_not_any_of_with_compact_option() {
+        BrowserUtils.sleep(10);
+        vehiclePage.tagsAll.click();
+        BrowserUtils.sleep(1);
+        vehiclePage.isAnyOf.click();
         BrowserUtils.sleep(2);
         vehiclePage.selectIsNotAnyOf.click();
         BrowserUtils.sleep(2);
@@ -94,43 +100,48 @@ public class NVF_795_TagsFilterStepDefinitions {
     @Then("user sees the list of results except Compact")
     public void user_sees_the_list_of_results_except_compact() {
 
+        BrowserUtils.sleep(5);
         String notExpectedText = "Compact";
         String actualText = vehiclePage.compactCell.getText();
+        BrowserUtils.sleep(5);
         Assert.assertNotEquals(notExpectedText, actualText);
 
+    }
+
+    @When("user selects is Not Any Of with Compact and Sedan option")
+    public void user_selects_is_not_any_of_with_compact_and_sedan_option() {
+        BrowserUtils.sleep(10);
+        vehiclePage.tagsAll.click();
+        BrowserUtils.sleep(2);
+        vehiclePage.isAnyOf.click();
+        BrowserUtils.sleep(2);
+        vehiclePage.selectIsNotAnyOf.click();
+        BrowserUtils.sleep(5);
+        vehiclePage.inputIsAnyOf.click();
+        BrowserUtils.sleep(3);
+        vehiclePage.compact.click();
+        BrowserUtils.sleep(2);
+        vehiclePage.sedan.click();
+        BrowserUtils.sleep(2);
+        vehiclePage.update.click();
 
 
     }
-      @When("user selects Is Not Any Of with Compact and Sedan option")
-    public void user_selects_ıs_not_any_of_with_compact_and_sedan_option() {
-
-
-          vehiclePage.selectIsNotAnyOf.click();
-          BrowserUtils.sleep(2);
-          vehiclePage.inputIsAnyOf.click();
-          BrowserUtils.sleep(2);
-          vehiclePage.compact.click();
-          vehiclePage.sedan.click();
-          BrowserUtils.sleep(2);
-          vehiclePage.update.click();
-
-
-      }
     @Then("user sees the list of results except Compact and Sedan")
     public void user_sees_the_list_of_results_except_compact_and_sedan() {
-
+        BrowserUtils.sleep(5);
         String notExpectedText1 = "Compact";
         String actualText1 = vehiclePage.compactCell.getText();
+        BrowserUtils.sleep(5);
         Assert.assertNotEquals(notExpectedText1, actualText1);
 
         BrowserUtils.sleep(5);
 
         String notExpectedText2 = "Sedan";
         String actualText2 = vehiclePage.compactCell.getText();
-        Assert.assertNotEquals(notExpectedText2, actualText2);
+        BrowserUtils.sleep(5);
+         Assert.assertNotEquals(notExpectedText2, actualText2);
 
 
     }
-
-
 }
