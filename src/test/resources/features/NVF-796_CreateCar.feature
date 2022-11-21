@@ -101,12 +101,23 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
         And user clicks save button
         Then user see "Entity saved" message
 
-
-    Scenario: Location field should have both letters and digits character (positive cases)
+    Scenario Outline: Optional Fields (Location-CatalogValue-SeatsNumber-DoorsNumber-Color-CO2Emissions-Horsepower-HorsepowerTaxation-Power)
+    character acceptance verification (positive scenarios)
         Given user is on the create Car page
-        When user enters "digits and letters" to "Location" field
+        When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
         Then user successfully passes to next field without seeing error message
+        Examples:
+            | characterType      | fieldName          |
+            | digits and letters | Location           |
+            | only digits        | CatalogValue       |
+            | only digits        | SeatsNumber        |
+            | only digits        | DoorsNumber        |
+            | only letters       | Color              |
+            | only digits        | CO2Emissions       |
+            | only digits        | Horsepower         |
+            | only digits        | HorsepowerTaxation |
+            | only digits        | Power              |
 
 
     Scenario Outline: Location field should have both letters and digits character (negative cases)
@@ -121,23 +132,29 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | special characters | Location  |
 
 
-    Scenario:  Immatriculation Date should be chosen from calendar pop-up or should be written
+    Scenario Outline:  Immatriculation Date and First Contract Date fields should be chosen from calendar pop-up or should be written
     in proper text format("Nov 9, 2022") (positive case,pop-up calendar)
         Given user is on the create Car page
-        When user pickes a date from calendar table in "ImmatriculationDate"
+        When user pickes a date from calendar table in "<fieldName>"
         And user passes to next field by Tab Key
         Then user successfully passes to next field without seeing error message
+        Examples:
+            | fieldName           |
+            | ImmatriculationDate |
+            | FirstContractDate   |
 
-
-    Scenario:  Immatriculation Date should be chosen from calendar pop-up or should be written
+    Scenario Outline:  Immatriculation Date and First Contract Date fields should be chosen from calendar pop-up or should be written
     in proper text format("Nov 9, 2022") (positive case,proper text format)
         Given user is on the create Car page
-        When user writes "Nov 9, 2022" date in text format to "ImmatriculationDate" field
+        When user writes "<dateInTextFormat>" date in text format to "<fieldName>" field
         And user passes to next field by Tab Key
         Then user successfully passes to next field without seeing error message
+        Examples:
+            | dateInTextFormat | fieldName           |
+            | Nov 9, 2022      | ImmatriculationDate |
+            | Nov 9, 2022      | FirstContractDate   |
 
-
-    Scenario Outline:  Immatriculation Date should be chosen from calendar pop-up or should be written
+    Scenario Outline:  Immatriculation Date and First Contract Date fields should be chosen from calendar pop-up or should be written
     in proper text format("Nov 9, 2022") (negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -149,33 +166,116 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | only letters       | ImmatriculationDate |
             | digits and letters | ImmatriculationDate |
             | special characters | ImmatriculationDate |
-
-    @wipSerdar
-    Scenario:  First Contract Date should be chosen from calendar pop-up or should be written
-    in proper text format("Nov 9, 2022") (positive case,pop-up calendar)
-        Given user is on the create Car page
-        When user pickes a date from calendar table in "FirstContractDate"
-        And user passes to next field by Tab Key
-        Then user successfully passes to next field without seeing error message
+            | only digits        | FirstContractDate   |
+            | only letters       | FirstContractDate   |
+            | digits and letters | FirstContractDate   |
+            | special characters | FirstContractDate   |
 
 
-    Scenario:  First Contract Date should be chosen from calendar pop-up or should be written
-    in proper text format("Nov 9, 2022") (positive case,proper text format)
-        Given user is on the create Car page
-        When user writes "Nov 9, 2022" date in text format to "FirstContractDate" field
-        And user passes to next field by Tab Key
-        Then user successfully passes to next field without seeing error message
-
-
-    Scenario Outline:  First Contract Date should be chosen from calendar pop-up or should be written
-    in proper text format("Nov 9, 2022") (negative cases)
+    Scenario Outline: Catalog Value field should have only digit character(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
-        Then user see "This value is not a valid date." error message
+        Then user see "Catalog Value field accepts only digits" error message
         Examples:
-            | characterType      | fieldName         |
-            | only digits        | FirstContractDate |
-            | only letters       | FirstContractDate |
-            | digits and letters | FirstContractDate |
-            | special characters | FirstContractDate |
+            | characterType      | fieldName    |
+            | only letters       | CatalogValue |
+            | special characters | CatalogValue |
+            | digits and letters | CatalogValue |
+
+
+    Scenario Outline: Seats Number field should have only digit character(negative cases)
+        Given user is on the create Car page
+        When user enters "<characterType>" to "<fieldName>" field
+        And user passes to next field by Tab Key
+        Then user see "Seats Number field accepts only digits" error message
+        Examples:
+            | characterType      | fieldName   |
+            | only letters       | SeatsNumber |
+            | special characters | SeatsNumber |
+            | digits and letters | SeatsNumber |
+
+
+    Scenario Outline: Doors Number field should have only digit character(negative cases)
+        Given user is on the create Car page
+        When user enters "<characterType>" to "<fieldName>" field
+        And user passes to next field by Tab Key
+        Then user see "Doors Number field accepts only digits" error message
+        Examples:
+            | characterType      | fieldName   |
+            | only letters       | DoorsNumber |
+            | special characters | DoorsNumber |
+            | digits and letters | DoorsNumber |
+
+
+    Scenario Outline: Color field should have only letter character(negative cases)
+        Given user is on the create Car page
+        When user enters "<characterType>" to "<fieldName>" field
+        And user passes to next field by Tab Key
+        Then user see "Color field accepts only letter" error message
+        Examples:
+            | characterType      | fieldName |
+            | only digits        | Color     |
+            | special characters | Color     |
+            | digits and letters | Color     |
+
+
+    Scenario Outline: CO2 Emissions field should have only digit character(negative cases)
+        Given user is on the create Car page
+        When user enters "<characterType>" to "<fieldName>" field
+        And user passes to next field by Tab Key
+        Then user see "CO2 Emissions field accepts only digits" error message
+        Examples:
+            | characterType      | fieldName    |
+            | only letters       | CO2Emissions |
+            | special characters | CO2Emissions |
+            | digits and letters | CO2Emissions |
+
+
+    Scenario Outline: Horsepower field should have only digit character(negative cases)
+        Given user is on the create Car page
+        When user enters "<characterType>" to "<fieldName>" field
+        And user passes to next field by Tab Key
+        Then user see "Horsepower field accepts only digits" error message
+        Examples:
+            | characterType      | fieldName  |
+            | only letters       | Horsepower |
+            | special characters | Horsepower |
+            | digits and letters | Horsepower |
+
+
+    Scenario Outline: Horsepower Taxation field should have only digit character(negative cases)
+        Given user is on the create Car page
+        When user enters "<characterType>" to "<fieldName>" field
+        And user passes to next field by Tab Key
+        Then user see "Horsepower Taxation field accepts only digits" error message
+        Examples:
+            | characterType      | fieldName          |
+            | only letters       | HorsepowerTaxation |
+            | special characters | HorsepowerTaxation |
+            | digits and letters | HorsepowerTaxation |
+
+
+    Scenario Outline: Power field should have only digit character(negative cases)
+        Given user is on the create Car page
+        When user enters "<characterType>" to "<fieldName>" field
+        And user passes to next field by Tab Key
+        Then user see "Power field accepts only digits" error message
+        Examples:
+            | characterType      | fieldName |
+            | only letters       | Power     |
+            | special characters | Power     |
+            | digits and letters | Power     |
+
+    @wipSerdar
+    Scenario Outline: user can only select one option from Vehicle Model and Vehicle Make (positive scenario)
+        Given user is on the create Car page
+        When user clicks Add button for "<fieldName>"
+        And user selects "<option>"
+        And user clicks select button in Vehicle Model_Make popup
+        Then user see "<option>" is displayed on the Create Car Page
+        Examples:
+            | fieldName     | option  |
+            | Vehicle_Model | Mazda   |
+            | Vehicle_Make  | Ferrari |
+
