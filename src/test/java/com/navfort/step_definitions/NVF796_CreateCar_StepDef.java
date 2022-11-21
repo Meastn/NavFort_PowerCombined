@@ -71,8 +71,8 @@ public class NVF796_CreateCar_StepDef {
       //  BrowserUtils.waitForInvisibility(createCarPage.loaderMask);
       // BrowserUtils.waitForInvisibility(basePage.spinningWheel);
       // createCarPage.waitForLoadingIconToDisappear();
-     BrowserUtils.sleep(20);
-     //   BasePage.waitUntilLoaderScreenDisappear();
+    // BrowserUtils.sleep(20);
+        BasePage.waitUntilLoaderScreenDisappear();
       Actions actions = new Actions(Driver.getDriver());
       actions.moveToElement(basePage.fleetButton).perform();
       // basePage.fleetButton.click();
@@ -82,10 +82,10 @@ public class NVF796_CreateCar_StepDef {
       // wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
       // BrowserUtils.waitForInvisibility(basePage.spinningWheel);
       // createCarPage.waitForLoadingIconToDisappear();
-        BrowserUtils.sleep(20);
+      //  BrowserUtils.sleep(20);
      // BrowserUtils.waitForVisibility(createCarPage.loaderMask);
       // BrowserUtils.waitForInvisibility(createCarPage.loaderMask);
-      // BasePage.waitUntilLoaderScreenDisappear();
+       BasePage.waitUntilLoaderScreenDisappear();
 
       //  BrowserUtils.waitForClickable(vehiclePage.createCarButton);
       vehiclePage.createCarButton.click();
@@ -94,9 +94,9 @@ public class NVF796_CreateCar_StepDef {
       //  wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
       // wait.until(ExpectedConditions.invisibilityOf(basePage.spinningWheel));
       // createCarPage.waitForLoadingIconToDisappear();
-         BrowserUtils.sleep(15);
+       //  BrowserUtils.sleep(15);
       //  BrowserUtils.waitForInvisibility(basePage.spinningWheel);
-     // BasePage.waitUntilLoaderScreenDisappear();
+      BasePage.waitUntilLoaderScreenDisappear();
 
    }
 
