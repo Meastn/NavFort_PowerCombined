@@ -13,9 +13,9 @@ import org.junit.Assert;
 public class NVF797_FilterGeneral {
 
     BasePage basePage = new BasePage();
-LoginPage loginPage = new LoginPage();
-VehiclePage vehiclePage = new VehiclePage();
-Filter_GenaralPage filter_genaralPage = new Filter_GenaralPage();
+    LoginPage loginPage = new LoginPage();
+    VehiclePage vehiclePage = new VehiclePage();
+    Filter_GenaralPage filter_genaralPage = new Filter_GenaralPage();
 
 
 
