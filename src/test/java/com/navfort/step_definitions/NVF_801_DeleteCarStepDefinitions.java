@@ -144,7 +144,6 @@ public class NVF_801_DeleteCarStepDefinitions {
         BrowserUtils.sleep(2);
         basePage.vehiclesButton.click();
 
-
     }
     @Then ( "user check the deleted row is removed from Fleet-Vehicle page" )
     public void userCheckTheDeletedRowIsRemovedFromFleetVehiclePage() {
