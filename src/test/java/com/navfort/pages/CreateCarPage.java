@@ -61,7 +61,7 @@ public class CreateCarPage extends BasePage {
    @FindBy(xpath = "//table//a[text()='12']")
    public WebElement dateFromCalendarPopUp_6Nov2022;
 
-   @FindBy(xpath = "//div[@class='loader-mask shown']")
+   @FindBy(xpath = "(//div[@class='loader-mask shown'])[2]")
    //added from Yakup's approach  in order to use in BrowserUtils.invisibilityOf
    public WebElement loaderMask;
 
@@ -108,34 +108,53 @@ public class CreateCarPage extends BasePage {
    public WebElement entitySavedMessage;
 
 
+
+
    @FindBy(xpath = "(//div[@class='loader-mask shown']/div)[2]")
    //added by Serdar in order to use in BrowserUtils.invisibilityOf
    public List<WebElement> spinningWheel;
 
+   @FindBy(xpath = "(//button[@class='btn btn-medium add-btn'])[1]")
+   public WebElement AddVehicleModelButton;
+
+   @FindBy(xpath = "(//button[@class='btn btn-medium add-btn'])[2]")
+   public WebElement AddVehicleMakeButton;
+
+   @FindBy(xpath = "//button[.='Select']")
+   public WebElement selectButtonInVehicleModel_MakePopup;
+
    public WebElement getWebElement(String idStartsWith) {
-     WebElement element;
+      WebElement element;
       if (idStartsWith.equals("ImmatriculationDate")) {
-          element = Driver.getDriver().findElement(By.xpath("//input[starts-with(@id,'date_selector_custom_entity_type_ImmatriculationDate')]"));
-      } else if  (idStartsWith.equals("FirstContractDate")) {
+         element = Driver.getDriver().findElement(By.xpath("//input[starts-with(@id,'date_selector_custom_entity_type_ImmatriculationDate')]"));
+      } else if (idStartsWith.equals("FirstContractDate")) {
          element = Driver.getDriver().findElement(By.xpath("//input[starts-with(@id,'date_selector_custom_entity_type_FirstContractDate')]"));
+      } else { //else part dynamically gets the inputbox elements
+         element = Driver.getDriver().findElement(By.xpath("//input[starts-with(@id,'custom_entity_type_" + idStartsWith + "')]"));
       }
-       else{
-            element = Driver.getDriver().findElement(By.xpath("//input[starts-with(@id,'custom_entity_type_" + idStartsWith + "')]"));
-         }
-         return element;
+      return element;
    }
 
-      public void waitForLoadingIconToDisappear() {
-         int count = 0;
-         while (spinningWheel.size() != 0 && count < 10) {
-            try {
-               Thread.sleep(1000);
-            } catch (InterruptedException e) {
-               e.printStackTrace();
-            }
-            count++;
-         }
-      }
-
+   public WebElement getVehicleModel_Make_CheckBox(String model_Make_Name) {
+      return Driver.getDriver().findElement(By.xpath("//td[text()='" + model_Make_Name + "\']/preceding-sibling::td/input"));
    }
+
+   public WebElement VehicleModel_MakeNamesOnTheCreateCarPage(String modelMakeName) {
+      return Driver.getDriver().findElement(By.xpath("//a[.='" + modelMakeName + " ']"));
+   }
+
+
+   public void waitForLoadingIconToDisappear() {
+      int count = 0;
+      while (spinningWheel.size() != 0 && count < 10) {
+         try {
+            Thread.sleep(1000);
+         } catch (InterruptedException e) {
+            e.printStackTrace();
+         }
+         count++;
+      }
+   }
+
+}
 

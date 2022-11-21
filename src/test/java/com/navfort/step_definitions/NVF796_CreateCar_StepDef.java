@@ -64,32 +64,39 @@ public class NVF796_CreateCar_StepDef {
    public void userIsOnTheCreateCarPage() {
       Driver.getDriver().get(ConfigurationReader.getProperty("url"));
       loginPage.loginAsSalesManager();
-      Driver.getDriver().navigate().refresh();
-    //  WebDriverWait wait = new WebDriverWait(Driver.getDriver(),Duration.ofSeconds(15));
-    //  wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[@class='loader-mask shown']/div)[2]"));
-    //  wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
-     // BrowserUtils.waitForVisibility(createCarPage.loaderMask);
-      BrowserUtils.waitForInvisibility(basePage.spinningWheel);
-     // BrowserUtils.waitForInvisibility(createCarPage.loaderMask);
-    // createCarPage.waitForLoadingIconToDisappear();
-     // BrowserUtils.sleep(10);
+      BrowserUtils.waitForInvisibility(basePage.loadingBar);
+      // Driver.getDriver().navigate().refresh();
+      //  wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
+      // BrowserUtils.waitForVisibility(createCarPage.loaderMask);
+      //  BrowserUtils.waitForInvisibility(createCarPage.loaderMask);
+      // BrowserUtils.waitForInvisibility(basePage.spinningWheel);
+      // createCarPage.waitForLoadingIconToDisappear();
+     BrowserUtils.sleep(20);
+     //   BasePage.waitUntilLoaderScreenDisappear();
       Actions actions = new Actions(Driver.getDriver());
       actions.moveToElement(basePage.fleetButton).perform();
-     // basePage.fleetButton.click();
+      // basePage.fleetButton.click();
       BrowserUtils.sleep(1);
       basePage.vehiclesButton.click();
-     // wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
-       BrowserUtils.waitForInvisibility(basePage.spinningWheel);
-     // createCarPage.waitForLoadingIconToDisappear();
-     //  BrowserUtils.sleep(15);
 
-      JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-      js.executeScript("arguments[0].click();", vehiclePage.createCarButton);
-    //  wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
-     // wait.until(ExpectedConditions.invisibilityOf(basePage.spinningWheel));
-   // createCarPage.waitForLoadingIconToDisappear();
-     //   BrowserUtils.sleep(10);
-      BrowserUtils.waitForInvisibility(basePage.spinningWheel);
+      // wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
+      // BrowserUtils.waitForInvisibility(basePage.spinningWheel);
+      // createCarPage.waitForLoadingIconToDisappear();
+        BrowserUtils.sleep(20);
+     // BrowserUtils.waitForVisibility(createCarPage.loaderMask);
+      // BrowserUtils.waitForInvisibility(createCarPage.loaderMask);
+      // BasePage.waitUntilLoaderScreenDisappear();
+
+      //  BrowserUtils.waitForClickable(vehiclePage.createCarButton);
+      vehiclePage.createCarButton.click();
+      //  JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+      //  js.executeScript("arguments[0].click();", vehiclePage.createCarButton);
+      //  wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
+      // wait.until(ExpectedConditions.invisibilityOf(basePage.spinningWheel));
+      // createCarPage.waitForLoadingIconToDisappear();
+         BrowserUtils.sleep(15);
+      //  BrowserUtils.waitForInvisibility(basePage.spinningWheel);
+     // BasePage.waitUntilLoaderScreenDisappear();
 
    }
 
@@ -211,7 +218,7 @@ public class NVF796_CreateCar_StepDef {
          createCarPage.driverInputBox.sendKeys(faker.numerify("#######"));
       } else if (fieldName.equals("Location")) {
          createCarPage.locationInputBox.sendKeys(faker.numerify("#######"));
-      }else if (fieldName.equals("Immatriculation Date")) {
+      } else if (fieldName.equals("Immatriculation Date")) {
          createCarPage.ImmatriculationDate.sendKeys(faker.numerify("#######"));
       }
    }
@@ -243,7 +250,7 @@ public class NVF796_CreateCar_StepDef {
          createCarPage.modelYearInputBox.sendKeys(faker.letterify("???????"));
       } else if (fieldName.equals("Location")) {
          createCarPage.locationInputBox.sendKeys(faker.letterify("???????"));
-      }else if (fieldName.equals("Immatriculation Date")) {
+      } else if (fieldName.equals("Immatriculation Date")) {
          createCarPage.ImmatriculationDate.sendKeys(faker.letterify("???????"));
       }
    }
@@ -263,8 +270,8 @@ public class NVF796_CreateCar_StepDef {
 
    @Then("user successfully passes to next field without seeing error message")
    public void userSuccessfullyPassesToNextFieldWithoutSeeingWarningMessage() {
-
       Assert.assertTrue(true);
+
    }
 
    @Then("user see {string} field is still empty")
@@ -333,37 +340,71 @@ public class NVF796_CreateCar_StepDef {
    @When("user enters {string} to {string} field")
    public void userEntersToField(String characterType, String fieldName) {
       CreateCarPage createCarPage1 = new CreateCarPage();
-      Faker faker= new Faker();
-         switch (characterType){
-            case "only digits":
-               createCarPage1.getWebElement(fieldName).sendKeys(faker.numerify("#######"));
-               break;
-            case "only letters":
-               createCarPage1.getWebElement(fieldName).sendKeys(faker.letterify("????????"));
-               break;
-            case "special characters":
-               createCarPage1.getWebElement(fieldName).sendKeys("'^+^+%+^%'");
-               break;
-            case "digits and letters":
-               createCarPage1.getWebElement(fieldName).sendKeys(faker.bothify("###???##??"));
-               break;
-         }
-
+      Faker faker = new Faker();
+      switch (characterType) {
+         case "only digits":
+            BrowserUtils.waitForVisibility(createCarPage1.getWebElement(fieldName));
+            createCarPage1.getWebElement(fieldName).sendKeys(faker.numerify("#######"));
+            System.out.println("createCarPage1.getWebElement(fieldName).getAttribute(\"value\") = " + createCarPage1.getWebElement(fieldName).getAttribute("value"));
+            break;
+         case "only letters":
+            createCarPage1.getWebElement(fieldName).sendKeys(faker.letterify("????????"));
+            System.out.println("createCarPage1.getWebElement(fieldName).getAttribute(\"value\") = " + createCarPage1.getWebElement(fieldName).getAttribute("value"));
+            break;
+         case "special characters":
+            createCarPage1.getWebElement(fieldName).sendKeys("'^+^+%+^%'");
+            System.out.println("createCarPage1.getWebElement(fieldName).getAttribute(\"value\") = " + createCarPage1.getWebElement(fieldName).getAttribute("value"));
+            break;
+         case "digits and letters":
+            createCarPage1.getWebElement(fieldName).sendKeys(faker.bothify("###???##??"));
+            System.out.println("createCarPage1.getWebElement(fieldName).getAttribute(\"value\") = " + createCarPage1.getWebElement(fieldName).getAttribute("value"));
+            break;
       }
+
+   }
 
    @When("user pickes a date from calendar table in {string}")
    public void userChoosesADateFromCalendarPopUp(String fieldName) {
       // WebDriverWait wait = new WebDriverWait(Driver.getDriver(),Duration.ofSeconds(15));
       // wait.until(ExpectedConditions.elementToBeClickable(createCarPage.ImmatriculationDate));
 
-         createCarPage.getWebElement(fieldName).click();
-         createCarPage.dateFromCalendarPopUp_6Nov2022.click();
+      createCarPage.getWebElement(fieldName).click();
+      createCarPage.dateFromCalendarPopUp_6Nov2022.click();
 
-      }
+   }
 
    @When("user writes {string} date in text format to {string} field")
-   public void userWritesTheDateInTextFormatInImmatriculationDateField(String date,String fieldName) {
+   public void userWritesTheDateInTextFormatInImmatriculationDateField(String date, String fieldName) {
       createCarPage.getWebElement(fieldName).sendKeys(date);
+   }
+
+   @When("user clicks Add button for {string}")
+   public void userClicksAddButtonFor(String fieldName) {
+      JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+      js.executeScript("arguments[0].scrollIntoView(true);", createCarPage.AddVehicleModelButton );
+      BrowserUtils.sleep(3);
+      if (fieldName.equals("Vehicle_Model")) {
+         createCarPage.AddVehicleModelButton.click();
+      } else if (fieldName.equals("Vehicle_Make")) {
+         createCarPage.AddVehicleMakeButton.click();
+      }
+   }
+
+
+   @And("user selects {string}")
+   public void userSelectsAsModel_Make_Name(String model_Make_Name) {
+      createCarPage.getVehicleModel_Make_CheckBox(model_Make_Name).click();
+   }
+
+
+   @And("user clicks select button in Vehicle Model_Make popup")
+   public void userClicksSaveButtonInVehicleModel_MakePopup() {
+      createCarPage.selectButtonInVehicleModel_MakePopup.click();
+   }
+
+   @Then("user see {string} is displayed on the Create Car Page")
+   public void userSeeVehicleModel_MakeNameAsAdded(String model_MakeName) {
+      Assert.assertTrue(createCarPage.VehicleModel_MakeNamesOnTheCreateCarPage(model_MakeName).isDisplayed());
    }
 }
 
