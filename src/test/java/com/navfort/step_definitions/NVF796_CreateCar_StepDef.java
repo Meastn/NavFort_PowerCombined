@@ -70,7 +70,7 @@ public class NVF796_CreateCar_StepDef {
       //  BrowserUtils.waitForInvisibility(createCarPage.loaderMask);
       // BrowserUtils.waitForInvisibility(basePage.spinningWheel);
       // createCarPage.waitForLoadingIconToDisappear();
-      BrowserUtils.sleep(15);
+      BrowserUtils.sleep(12);
       //  BasePage.waitUntilLoaderScreenDisappear();
       Actions actions = new Actions(Driver.getDriver());
       actions.moveToElement(basePage.fleetButton).perform();
@@ -81,7 +81,7 @@ public class NVF796_CreateCar_StepDef {
       // wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
       // BrowserUtils.waitForInvisibility(basePage.spinningWheel);
       // createCarPage.waitForLoadingIconToDisappear();
-      BrowserUtils.sleep(15);
+      BrowserUtils.sleep(12);
       // BrowserUtils.waitForVisibility(createCarPage.loaderMask);
       // BrowserUtils.waitForInvisibility(createCarPage.loaderMask);
       // BasePage.waitUntilLoaderScreenDisappear();
@@ -158,7 +158,7 @@ public class NVF796_CreateCar_StepDef {
    @And("user clicks save button")
    public void userClicksSaveButton() {
       createCarPage.saveButtonForCreatingCar.click();
-      BrowserUtils.sleep(10);
+      BrowserUtils.waitForVisibility(createCarPage.entitySavedMessage);
    }
 
    @Then("user see {string} field cannot be empty error message")
@@ -348,7 +348,7 @@ public class NVF796_CreateCar_StepDef {
             System.out.println("createCarPage1.getWebElement(fieldName).getAttribute(\"value\") = " + createCarPage1.getWebElement(fieldName).getAttribute("value"));
             break;
          case "only letters":
-            createCarPage1.getWebElement(fieldName).sendKeys(faker.letterify("????????"));
+            createCarPage1.getWebElement(fieldName).sendKeys(faker.letterify("E???????"));
             System.out.println("createCarPage1.getWebElement(fieldName).getAttribute(\"value\") = " + createCarPage1.getWebElement(fieldName).getAttribute("value"));
             break;
          case "special characters":
@@ -356,7 +356,7 @@ public class NVF796_CreateCar_StepDef {
             System.out.println("createCarPage1.getWebElement(fieldName).getAttribute(\"value\") = " + createCarPage1.getWebElement(fieldName).getAttribute("value"));
             break;
          case "digits and letters":
-            createCarPage1.getWebElement(fieldName).sendKeys(faker.bothify("###???##??"));
+            createCarPage1.getWebElement(fieldName).sendKeys(faker.bothify("E###???##??"));
             System.out.println("createCarPage1.getWebElement(fieldName).getAttribute(\"value\") = " + createCarPage1.getWebElement(fieldName).getAttribute("value"));
             break;
       }
@@ -469,7 +469,12 @@ public class NVF796_CreateCar_StepDef {
          Assert.assertEquals(expectedvaluesList,actualValuesList);
 
       }
+
+   @When("user keeps all the compulsory fields empty")
+   public void userKeepsAllTheCompulsoryFieldsEmpty() {
+      Assert.assertTrue(true);
    }
+}
 
 
 
