@@ -22,7 +22,7 @@ import org.junit.runner.RunWith;
 
 
             dryRun = false,
-            tags ="",
+            tags ="@NVF-796",
 
 
             publish = false
