@@ -1,18 +1,19 @@
-@NVF-796
+@NVF-921
 Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a new car
 
-
+    @NVF-894
     Scenario: Store Manager and Sales Manager can create car
         Given user is on the Dashboard page as "sales manager"
         When user clicks fleet - vehicles button
         Then user see create car button on the right side
 
+    @NVF-895
     Scenario: Driver cannot create Car
         Given user is on the Dashboard page as "driver"
         When user clicks fleet - vehicles button
         Then user can't see create car button on the right side
 
-
+    @NVF-896
     Scenario Outline: user cannot create car without filling compulsory fields
         Given user is on the create Car page
         When user fills all the compulsory fields with proper character format
@@ -32,7 +33,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | Transmission   |
             | Fuel Type      |
 
-
+    @NVF-897
     Scenario Outline: License Plate field should have both letters and digit characters(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -44,7 +45,8 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | only letters       | LicensePlate |
             | special characters | LicensePlate |
 
-    Scenario Outline: Driver field should have only letter characters(negative cases
+    @NVF-898
+    Scenario Outline: Driver field should have only letter characters(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
@@ -55,6 +57,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | digits and letters | Driver    |
             | special characters | Driver    |
 
+    @NVF-899
     Scenario Outline: Chassis Number field should have only digit character(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -64,7 +67,9 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | characterType      | fieldName     |
             | only letters       | ChassisNumber |
             | special characters | ChassisNumber |
+            | digits and letters | ChassisNumber |
 
+    @NVF-900
     Scenario Outline: Model Year field shoul have only digit character(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -74,7 +79,9 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | characterType      | fieldName |
             | only letters       | ModelYear |
             | special characters | ModelYear |
+            | digits and letters | ModelYear |
 
+    @NVF-901
     Scenario Outline: Model Year field must be between years 1900 and 2023
         Given user is on the create Car page
         When user enters "<year>" as Model Year
@@ -85,22 +92,26 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | 1899 |
             | 2024 |
 
+    @NVF-902
     Scenario: Transmission field doesn't allow to select multiple Dropdowns
         Given user is on the create Car page
         When  user select Manuel and Automatic options in Transmission dropdown field respectively
         Then user see only the last one (Automatic) is selected
 
+    @NVF-903
     Scenario: Fuel Type field doesn't allow to select multiple Dropdowns
         Given user is on the create Car page
         When  user select  Diesel and Electric options in Fuel Type dropdown field respectively
         Then user see only the last one (Electric) is selected
 
+    @NVF-904
     Scenario: User can create a car without OPTIONAL FIELDS
         Given user is on the create Car page
         When user fills all the compulsory fields with proper character format
         And user clicks save button
         Then user see "Entity saved" message
 
+    @NVF-905
     Scenario Outline: Optional Fields (Location-CatalogValue-SeatsNumber-DoorsNumber-Color-CO2Emissions-Horsepower-HorsepowerTaxation-Power)
     character acceptance verification (positive scenarios)
         Given user is on the create Car page
@@ -120,6 +131,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | only digits        | Power              |
 
 
+    @NVF-906
     Scenario Outline: Location field should have both letters and digits character (negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -131,7 +143,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | only letters       | Location  |
             | special characters | Location  |
 
-
+    @NVF-907
     Scenario Outline:  Immatriculation Date and First Contract Date fields should be chosen from calendar pop-up or should be written
     in proper text format("Nov 9, 2022") (positive case,pop-up calendar)
         Given user is on the create Car page
@@ -143,6 +155,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | ImmatriculationDate |
             | FirstContractDate   |
 
+    @NVF-908
     Scenario Outline:  Immatriculation Date and First Contract Date fields should be chosen from calendar pop-up or should be written
     in proper text format("Nov 9, 2022") (positive case,proper text format)
         Given user is on the create Car page
@@ -154,6 +167,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | Nov 9, 2022      | ImmatriculationDate |
             | Nov 9, 2022      | FirstContractDate   |
 
+    @NVF-909
     Scenario Outline:  Immatriculation Date and First Contract Date fields should be chosen from calendar pop-up or should be written
     in proper text format("Nov 9, 2022") (negative cases)
         Given user is on the create Car page
@@ -171,7 +185,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | digits and letters | FirstContractDate   |
             | special characters | FirstContractDate   |
 
-
+    @NVF-910
     Scenario Outline: Catalog Value field should have only digit character(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -183,7 +197,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | special characters | CatalogValue |
             | digits and letters | CatalogValue |
 
-
+    @NVF-911
     Scenario Outline: Seats Number field should have only digit character(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -195,7 +209,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | special characters | SeatsNumber |
             | digits and letters | SeatsNumber |
 
-
+    @NVF-912
     Scenario Outline: Doors Number field should have only digit character(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -207,7 +221,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | special characters | DoorsNumber |
             | digits and letters | DoorsNumber |
 
-
+    @NVF-913
     Scenario Outline: Color field should have only letter character(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -219,7 +233,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | special characters | Color     |
             | digits and letters | Color     |
 
-
+    @NVF-914
     Scenario Outline: CO2 Emissions field should have only digit character(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -231,7 +245,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | special characters | CO2Emissions |
             | digits and letters | CO2Emissions |
 
-
+    @NVF-915
     Scenario Outline: Horsepower field should have only digit character(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -243,7 +257,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | special characters | Horsepower |
             | digits and letters | Horsepower |
 
-
+    @NVF-916
     Scenario Outline: Horsepower Taxation field should have only digit character(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -255,7 +269,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | special characters | HorsepowerTaxation |
             | digits and letters | HorsepowerTaxation |
 
-
+    @NVF-917
     Scenario Outline: Power field should have only digit character(negative cases)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
@@ -267,7 +281,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | special characters | Power     |
             | digits and letters | Power     |
 
-    @wipSerdar
+    @NVF-918
     Scenario Outline: user can only select one option from Vehicle Model and Vehicle Make (positive scenario)
         Given user is on the create Car page
         When user clicks Add button for "<fieldName>"
@@ -278,4 +292,39 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | fieldName     | option  |
             | Vehicle_Model | Mazda   |
             | Vehicle_Make  | Ferrari |
+
+    @NVF-919
+    Scenario Outline: user can only select one option from Vehicle Model and Vehicle Make (negative scenario)
+        Given user is on the create Car page
+        When user clicks Add button for "<fieldName>"
+        And user selects "<option1>" and "<option2>"
+        And user clicks select button in Vehicle Model_Make popup
+        Then user see "Multiple choices are not allowed" error message displayed on the Create Car Page
+        Examples:
+            | fieldName     | option1 | option2 |
+            | Vehicle_Model | Mazda   | Enzo    |
+            | Vehicle_Make  | Ferrari | Tesla   |
+
+    @NVF-920
+    Scenario: User can see newly created car in ’Fleet-Vehicle’ table
+        Given user is on the create Car page
+        When user fills all the compulsory fields with valid credentials below
+            | License Plate  | 11ASDF1111  |
+            | Tags           | Junior      |
+            | Driver         | John Doe    |
+            | Chassis Number | 111,222,333 |
+            | Model Year     | 2022        |
+            | Transmission   | Manual      |
+            | Fuel Type      | Electric    |
+
+        And user clicks save button
+        And user clicks Car button to navigate All Cars page
+        Then user see newly created car in ’Fleet-Vehicle’ table
+            | License Plate  | 11ASDF1111  |
+            | Tags           | Junior      |
+            | Driver         | John Doe    |
+            | Chassis Number | 111,222,333 |
+            | Model Year     | 2022        |
+            | Transmission   | Manual      |
+            | Fuel Type      | Electric    |
 

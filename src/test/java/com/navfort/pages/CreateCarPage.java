@@ -102,10 +102,13 @@ public class CreateCarPage extends BasePage {
 
 
    @FindBy(xpath = "//button[@class='btn btn-success action-button']")
-   public WebElement saveButton;
+   public WebElement saveButtonForCreatingCar;
 
    @FindBy(xpath = "//div[text()='Entity saved']")
    public WebElement entitySavedMessage;
+
+   @FindBy(xpath = "//a[.='Car']")
+   public WebElement navigateAllCarsButton;
 
 
 

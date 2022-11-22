@@ -20,8 +20,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class NVF796_CreateCar_StepDef {
    LoginPage loginPage = new LoginPage();
@@ -71,8 +70,8 @@ public class NVF796_CreateCar_StepDef {
       //  BrowserUtils.waitForInvisibility(createCarPage.loaderMask);
       // BrowserUtils.waitForInvisibility(basePage.spinningWheel);
       // createCarPage.waitForLoadingIconToDisappear();
-    // BrowserUtils.sleep(20);
-        BasePage.waitUntilLoaderScreenDisappear();
+      BrowserUtils.sleep(15);
+      //  BasePage.waitUntilLoaderScreenDisappear();
       Actions actions = new Actions(Driver.getDriver());
       actions.moveToElement(basePage.fleetButton).perform();
       // basePage.fleetButton.click();
@@ -82,10 +81,10 @@ public class NVF796_CreateCar_StepDef {
       // wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
       // BrowserUtils.waitForInvisibility(basePage.spinningWheel);
       // createCarPage.waitForLoadingIconToDisappear();
-      //  BrowserUtils.sleep(20);
-     // BrowserUtils.waitForVisibility(createCarPage.loaderMask);
+      BrowserUtils.sleep(15);
+      // BrowserUtils.waitForVisibility(createCarPage.loaderMask);
       // BrowserUtils.waitForInvisibility(createCarPage.loaderMask);
-       BasePage.waitUntilLoaderScreenDisappear();
+      // BasePage.waitUntilLoaderScreenDisappear();
 
       //  BrowserUtils.waitForClickable(vehiclePage.createCarButton);
       vehiclePage.createCarButton.click();
@@ -94,9 +93,9 @@ public class NVF796_CreateCar_StepDef {
       //  wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
       // wait.until(ExpectedConditions.invisibilityOf(basePage.spinningWheel));
       // createCarPage.waitForLoadingIconToDisappear();
-       //  BrowserUtils.sleep(15);
+      BrowserUtils.sleep(7);
       //  BrowserUtils.waitForInvisibility(basePage.spinningWheel);
-      BasePage.waitUntilLoaderScreenDisappear();
+      // BasePage.waitUntilLoaderScreenDisappear();
 
    }
 
@@ -116,7 +115,7 @@ public class NVF796_CreateCar_StepDef {
       select1.selectByVisibleText("Manual");
       BrowserUtils.sleep(5);
       select2.selectByVisibleText("Electric");
-//BrowserUtils.sleep(3);
+      BrowserUtils.sleep(3);
    }
 
    @And("user keeps {string} field empty")
@@ -158,7 +157,8 @@ public class NVF796_CreateCar_StepDef {
 
    @And("user clicks save button")
    public void userClicksSaveButton() {
-      createCarPage.saveButton.click();
+      createCarPage.saveButtonForCreatingCar.click();
+      BrowserUtils.sleep(10);
    }
 
    @Then("user see {string} field cannot be empty error message")
@@ -381,12 +381,14 @@ public class NVF796_CreateCar_StepDef {
    @When("user clicks Add button for {string}")
    public void userClicksAddButtonFor(String fieldName) {
       JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-      js.executeScript("arguments[0].scrollIntoView(true);", createCarPage.AddVehicleModelButton );
+      js.executeScript("arguments[0].scrollIntoView(true);", createCarPage.AddVehicleModelButton);
       BrowserUtils.sleep(3);
       if (fieldName.equals("Vehicle_Model")) {
          createCarPage.AddVehicleModelButton.click();
+         BrowserUtils.waitForVisibility(createCarPage.getVehicleModel_Make_CheckBox("Mazda"));
       } else if (fieldName.equals("Vehicle_Make")) {
          createCarPage.AddVehicleMakeButton.click();
+         BrowserUtils.waitForVisibility(createCarPage.getVehicleModel_Make_CheckBox("Ferrari"));
       }
    }
 
@@ -394,6 +396,7 @@ public class NVF796_CreateCar_StepDef {
    @And("user selects {string}")
    public void userSelectsAsModel_Make_Name(String model_Make_Name) {
       createCarPage.getVehicleModel_Make_CheckBox(model_Make_Name).click();
+      BrowserUtils.sleep(1);
    }
 
 
@@ -406,6 +409,67 @@ public class NVF796_CreateCar_StepDef {
    public void userSeeVehicleModel_MakeNameAsAdded(String model_MakeName) {
       Assert.assertTrue(createCarPage.VehicleModel_MakeNamesOnTheCreateCarPage(model_MakeName).isDisplayed());
    }
-}
+
+   @And("user selects {string} and {string}")
+   public void userSelectsAnd(String model_Make_Name1, String model_Make_Name2) {
+      createCarPage.getVehicleModel_Make_CheckBox(model_Make_Name1).click();
+      BrowserUtils.sleep(1);
+      createCarPage.getVehicleModel_Make_CheckBox(model_Make_Name2).click();
+      BrowserUtils.sleep(1);
+   }
+
+   @Then("user see {string} error message displayed on the Create Car Page")
+   public void userSeeErrorMessageDisplayedOnTheCreateCarPage(String arg0) {
+      Assert.fail("Error message is not displayed, instead, user can add multiple choices");
+   }
+
+   @And("user clicks Car button to navigate All Cars page")
+   public void userClicksCarButtonToNavigateAllCarsPage() {
+      createCarPage.navigateAllCarsButton.click();
+   }
+
+   @When("user fills all the compulsory fields with valid credentials below")
+   public void userFillsAllTheCompulsoryFieldsWithValidCredentialsBelow(Map<String, String> credentials) {
+
+      createCarPage.licencePlateInputBox.sendKeys(credentials.get("License Plate"));
+      if (credentials.get("Tags").equals("Junior")) {
+         createCarPage.juniorCheckBox.click();
+      }
+      createCarPage.driverInputBox.sendKeys(credentials.get("Driver"));
+      createCarPage.chassisNumberInputBox.sendKeys(credentials.get("Chassis Number"));
+      createCarPage.modelYearInputBox.sendKeys(credentials.get("Model Year"));
+      Select select1 = new Select(createCarPage.transmissionDropown);
+
+      Select select2 = new Select(createCarPage.fuelTypeDropDown);
+      select1.selectByVisibleText(credentials.get("Transmission"));
+      BrowserUtils.sleep(5);
+      select2.selectByVisibleText(credentials.get("Fuel Type"));
+
+   }
+
+   @Then("user see newly created car in ’Fleet-Vehicle’ table")
+   public void userSeeNewlyCreatedCarInFleetVehicleTable(Map<String, String> expectedDataInMap) {
+
+        List<String> expectedvaluesList = new ArrayList<>( expectedDataInMap.values());
+
+      List<WebElement> allCarsInTable = Driver.getDriver().findElements(By.xpath("//tbody[@class='grid-body']/tr"));
+      List<String> actualValuesList = new ArrayList<>();
+      Set<String> keys = expectedDataInMap.keySet();
+      String actualDataFromCarTable;
+      for (String eachKey : keys) {
+         if (eachKey.equals("Tags")) {
+            actualDataFromCarTable = Driver.getDriver().findElement(By.xpath("//tbody[@class='grid-body']/tr[" + (allCarsInTable.size() - 1) + "]/td[@data-column-label='" + eachKey + "']//li")).getText();
+         } else {
+            actualDataFromCarTable = Driver.getDriver().findElement(By.xpath("//tbody[@class='grid-body']/tr[" + (allCarsInTable.size() - 1) + "]/td[@data-column-label='" + eachKey + "']")).getText();
+         }
+         actualValuesList.add(actualDataFromCarTable);
+      }
+         System.out.println("expectedvaluesList = " + expectedvaluesList);
+         System.out.println("actualValuesList = " + actualValuesList);
+         Assert.assertEquals(expectedvaluesList,actualValuesList);
+
+      }
+   }
+
 
 

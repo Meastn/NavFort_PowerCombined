@@ -62,7 +62,7 @@ public class BasePage {
    @FindBy(xpath = "//span[@class='title title-level-2']")
    public WebElement vehicleButtonForDriver;
 
-   @FindBy(xpath = "(//div[@class='loader-mask shown'])[2]")
+   @FindBy(xpath = "//div[@class='loader-mask shown']")
    //added from Yakup's approach  in order to use in BrowserUtils.invisibilityOf
    public static WebElement loaderMask;
 
