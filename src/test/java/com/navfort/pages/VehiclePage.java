@@ -60,9 +60,19 @@ public class VehiclePage {
     @FindBy(xpath = "//span[@class='grid-header-cell__label']")
     public List<WebElement>TableEachColumnName;
 
+    //locationFilter User story metka extension
     @FindBy(xpath = "//select")
     public WebElement manageFiltersSelectDropdown;
-    
+
+    @FindBy(xpath = "//a[@class='add-filter-button']")
+    public WebElement manageFiltersLink;
+
+    //it gives location option under ManageFiltersDropdown(link)
+    @FindBy(xpath = "//input[@title='Location']")
+    public WebElement locationOption;
+
+    @FindBy(xpath = "//div[@class='btn filter-criteria-selector oro-drop-opener oro-dropdown-toggle filter-default-value']")
+    public WebElement locationFilterDropdown;
     //Bilal's locators
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")
     public WebElement threeDots;
