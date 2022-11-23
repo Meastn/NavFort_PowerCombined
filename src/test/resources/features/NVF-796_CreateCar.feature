@@ -58,7 +58,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
-        Then user see "Chassis Number" field is still empty
+        Then user see "<fieldName>" field is still empty
         Examples:
             | characterType      | fieldName     |
             | only letters       | ChassisNumber |
@@ -66,11 +66,11 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
             | digits and letters | ChassisNumber |
 
     @NVF-900
-    Scenario Outline: Model Year field shoul have only digit character(negative scenarios)
+    Scenario Outline: Model Year field should have only digit character(negative scenarios)
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
-        Then user see "Model Year field only accepts digits" error message
+        Then user see "<fieldName>" field is still empty
         Examples:
             | characterType      | fieldName |
             | only letters       | ModelYear |
@@ -186,7 +186,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
-        Then user see "Catalog Value field accepts only digits" error message
+        Then user see "<fieldName>" field is still empty
         Examples:
             | characterType      | fieldName    |
             | only letters       | CatalogValue |
@@ -198,7 +198,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
-        Then user see "Seats Number field accepts only digits" error message
+        Then user see "<fieldName>" field is still empty
         Examples:
             | characterType      | fieldName   |
             | only letters       | SeatsNumber |
@@ -210,7 +210,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
-        Then user see "Doors Number field accepts only digits" error message
+        Then user see "<fieldName>" field is still empty
         Examples:
             | characterType      | fieldName   |
             | only letters       | DoorsNumber |
@@ -234,7 +234,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
-        Then user see "CO2 Emissions field accepts only digits" error message
+        Then user see "<fieldName>" field is still empty
         Examples:
             | characterType      | fieldName    |
             | only letters       | CO2Emissions |
@@ -246,7 +246,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
-        Then user see "Horsepower field accepts only digits" error message
+        Then user see "<fieldName>" field is still empty
         Examples:
             | characterType      | fieldName  |
             | only letters       | Horsepower |
@@ -258,7 +258,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
-        Then user see "Horsepower Taxation field accepts only digits" error message
+        Then user see "<fieldName>" field is still empty
         Examples:
             | characterType      | fieldName          |
             | only letters       | HorsepowerTaxation |
@@ -270,7 +270,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to create a 
         Given user is on the create Car page
         When user enters "<characterType>" to "<fieldName>" field
         And user passes to next field by Tab Key
-        Then user see "Power field accepts only digits" error message
+        Then user see "<fieldName>" field is still empty
         Examples:
             | characterType      | fieldName |
             | only letters       | Power     |

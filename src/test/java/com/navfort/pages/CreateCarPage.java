@@ -5,9 +5,13 @@ import com.navfort.utilities.Driver;
 import io.cucumber.java.zh_cn.假如;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class CreateCarPage extends BasePage {
@@ -61,9 +65,7 @@ public class CreateCarPage extends BasePage {
    @FindBy(xpath = "//table//a[text()='12']")
    public WebElement dateFromCalendarPopUp_6Nov2022;
 
-   @FindBy(xpath = "(//div[@class='loader-mask shown'])[2]")
-   //added from Yakup's approach  in order to use in BrowserUtils.invisibilityOf
-   public WebElement loaderMask;
+
 
    @FindBy(xpath = "//div[@class='loader-mask shown']")
    //added from Yakup's approach  in order to use in BrowserUtils.invisibilityOf
@@ -111,7 +113,21 @@ public class CreateCarPage extends BasePage {
    public WebElement navigateAllCarsButton;
 
 
+   @FindBy(xpath = "(//div[@class='loader-frame'])[last()]")
+   @CacheLookup
+   public static WebElement loaderMask;
 
+   public static void waitUntilLoaderScreenDisappear(){
+
+      try {
+         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15));
+         wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+         System.out.println("in-visibility");
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+
+   }
 
    @FindBy(xpath = "(//div[@class='loader-mask shown']/div)[2]")
    //added by Serdar in order to use in BrowserUtils.invisibilityOf
@@ -147,17 +163,7 @@ public class CreateCarPage extends BasePage {
    }
 
 
-   public void waitForLoadingIconToDisappear() {
-      int count = 0;
-      while (spinningWheel.size() != 0 && count < 10) {
-         try {
-            Thread.sleep(1000);
-         } catch (InterruptedException e) {
-            e.printStackTrace();
-         }
-         count++;
-      }
-   }
+
 
 }
 
