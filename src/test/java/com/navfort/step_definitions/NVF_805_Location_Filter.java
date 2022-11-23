@@ -10,7 +10,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class NVF_805_Location_Filter {
 
@@ -20,8 +25,9 @@ public class NVF_805_Location_Filter {
     LoginPage loginPage = new LoginPage();
 
     Select select;
+    WebDriverWait wait;
 
-    //1- up to the location dropdown
+    //US-1---> up to the location dropdown
     @Given("user is login with valid credentials and on the vehicle page")
     public void user_is_login_with_valid_credentials_and_on_the_vehicle_page() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
@@ -43,16 +49,55 @@ public class NVF_805_Location_Filter {
 
     @And("user clicks the manage filters dropdown and select the location option")
     public void userClicksTheManageFiltersDropdownAndSelectTheLocationOption() {
-        select=new Select(vehiclePage.manageFiltersSelectDropdown);
-        select.selectByValue("Location");
-        BrowserUtils.sleep(4);
+//        select=new Select(vehiclePage.manageFiltersSelectDropdown);
+//        select.selectByValue("Location");
+        vehiclePage.manageFiltersLink.click();
+//        BrowserUtils.sleep(4);
+        vehiclePage.locationOption.click();
+        wait=new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(vehiclePage.locationFilterDropdown));
+
     }
 
 
-    @Then("user should be able to see Location dropdown")
+    @Then("user should be able to see Location filter dropdown")
     public void user_should_be_able_to_see_location_dropdown() {
 
+        Assert.assertTrue( vehiclePage.locationFilterDropdown.isDisplayed());
+        vehiclePage.locationFilterDropdown.click();
+
+        BrowserUtils.sleep(4);
+
+
     }
+//US-2-----> "Location" filter has the methods below:
+//
+//Contains
+//Does Not Contain
+//Is Equal To
+//Starts With
+//Ends With
+//Is Any Of
+//Is Not Any Of
+//Is Empty
+//Is Not Empty
+
+    @When("user clicks the location filter dropdown")
+    public void user_clicks_the_location_filter_dropdown() {
+
+
+
+    }
+    @When("user clicks the method-filter dropdown")
+    public void user_clicks_the_method_filter_dropdown() {
+
+    }
+    @Then("user should be able to see following {string}")
+    public void user_should_be_able_to_see_following() {
+
+
+    }
+
 
 
 }
