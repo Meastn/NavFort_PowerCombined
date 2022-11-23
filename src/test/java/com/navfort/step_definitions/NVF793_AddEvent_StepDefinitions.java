@@ -89,10 +89,39 @@ public class NVF793_AddEvent_StepDefinitions {
     public void driver_should_not_see_the_add_event_button() {
 
         boolean addEventButtonIsDisplayed = addEventPage.addEventButton.isDisplayed();
+
         if(addEventButtonIsDisplayed == true){
             System.out.println("AddEvent Button should not be displayed");
 
             Assert.assertTrue(!addEventButtonIsDisplayed);
+        }
+
+    }
+
+    @When("user can click the Add Event button")
+    public void user_can_click_the_add_event_button() {
+
+        generalInformationPage.addEventButton.click();
+
+
+
+
+
+    }
+
+
+
+    @Then("user should land on the Add Event page")
+    public void user_should_land_on_the_add_event_page() {
+        BrowserUtils.sleep(10);
+
+        String actualPageTitle = addEventPage.addEventPagePopupTitle.getText();
+        String expectedPageTitle = "Add Event";
+
+        System.out.println(actualPageTitle);
+
+        if(actualPageTitle.equals(expectedPageTitle)){
+            System.out.println("Add Event button is clickable");
         }
 
     }

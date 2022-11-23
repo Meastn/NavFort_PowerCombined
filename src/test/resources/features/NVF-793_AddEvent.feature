@@ -15,3 +15,10 @@ Feature: As a Store Manager and Sales Manager, I should be able to add an event
   not see the Add Event Button
     When driver lands on general information page
     Then driver should not see the Add Event Button
+
+  @NVF-887
+  Scenario: Store Manager and Sales Manager can click the "Add Event" button and
+  land on the "Add Event" page
+    Given user is on the general information page
+    When user can click the Add Event button
+    Then user should land on the Add Event page
