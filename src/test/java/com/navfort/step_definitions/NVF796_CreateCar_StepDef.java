@@ -48,7 +48,7 @@ public class NVF796_CreateCar_StepDef {
 
    @Then("user see create car button on the right side")
    public void user_see_create_car_button_on_the_right_side() {
-      createCarPage.waitForLoadingIconToDisappear();
+      CreateCarPage.waitUntilLoaderScreenDisappear();
       Assert.assertTrue(vehiclePage.createCarButton.isDisplayed());
    }
 
@@ -70,7 +70,8 @@ public class NVF796_CreateCar_StepDef {
       //  BrowserUtils.waitForInvisibility(createCarPage.loaderMask);
       // BrowserUtils.waitForInvisibility(basePage.spinningWheel);
       // createCarPage.waitForLoadingIconToDisappear();
-      BrowserUtils.sleep(12);
+      //BrowserUtils.sleep(12);
+      CreateCarPage.waitUntilLoaderScreenDisappear();
       //  BasePage.waitUntilLoaderScreenDisappear();
       Actions actions = new Actions(Driver.getDriver());
       actions.moveToElement(basePage.fleetButton).perform();
@@ -81,7 +82,8 @@ public class NVF796_CreateCar_StepDef {
       // wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
       // BrowserUtils.waitForInvisibility(basePage.spinningWheel);
       // createCarPage.waitForLoadingIconToDisappear();
-      BrowserUtils.sleep(12);
+     // BrowserUtils.sleep(12);
+      CreateCarPage.waitUntilLoaderScreenDisappear();
       // BrowserUtils.waitForVisibility(createCarPage.loaderMask);
       // BrowserUtils.waitForInvisibility(createCarPage.loaderMask);
       // BasePage.waitUntilLoaderScreenDisappear();
@@ -93,7 +95,8 @@ public class NVF796_CreateCar_StepDef {
       //  wait.until(ExpectedConditions.invisibilityOf(createCarPage.loaderMask));
       // wait.until(ExpectedConditions.invisibilityOf(basePage.spinningWheel));
       // createCarPage.waitForLoadingIconToDisappear();
-      BrowserUtils.sleep(7);
+     // BrowserUtils.sleep(7);
+      CreateCarPage.waitUntilLoaderScreenDisappear();
       //  BrowserUtils.waitForInvisibility(basePage.spinningWheel);
       // BasePage.waitUntilLoaderScreenDisappear();
 
@@ -276,10 +279,10 @@ public class NVF796_CreateCar_StepDef {
 
    @Then("user see {string} field is still empty")
    public void userSeeFieldIsStillEmpty(String fieldName) {
-      if (fieldName.equals("Chassis Number")) {
-         createCarPage.chassisNumberInputBox.getAttribute("value").equals("");
+
+        Assert.assertTrue(createCarPage.getWebElement(fieldName).getAttribute("value").equals(""));
       }
-   }
+
 
 
    @When("user enters {int} as Model Year")
@@ -442,7 +445,6 @@ public class NVF796_CreateCar_StepDef {
 
       Select select2 = new Select(createCarPage.fuelTypeDropDown);
       select1.selectByVisibleText(credentials.get("Transmission"));
-      BrowserUtils.sleep(5);
       select2.selectByVisibleText(credentials.get("Fuel Type"));
 
    }
