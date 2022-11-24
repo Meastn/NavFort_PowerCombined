@@ -11,6 +11,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class NVF_805_Location_Filter {
     LoginPage loginPage = new LoginPage();
 
     Select select;
+    String keyword;
 
     //1- up to the location dropdown
     @Given("user is login with valid credentials and on the vehicle page")
@@ -77,7 +79,101 @@ public class NVF_805_Location_Filter {
 
     }
 
+    //us-3) user should see the specified keyword inn the result when he selects the contains method
+
+
+    @When("user select Contains method with a {string}")
+    public void userSelectContainsMethodWithA(String keyword) {
+        this.keyword=keyword;
+        vehiclePage.locationAllDropdown.click();
+        vehiclePage.filterTextField.sendKeys(keyword);
+        vehiclePage.updateButtonToFilter.click();
+        BrowserUtils.sleep(2);
+    }
 
 
 
+    @Then("the results should contain the specified keyword")
+    public void theResultsShouldContainTheSpecified() {
+        if(vehiclePage.listOfDataUnderTheLocationColumn.size()==0){
+            System.out.println("No entities were found to match your search. Try modifying your search criteria...");
+
+        }else{
+            for (WebElement eachLocationRelatedCellUnderTheLocationColumn : vehiclePage.listOfDataUnderTheLocationColumn) {
+                String eachLocation=eachLocationRelatedCellUnderTheLocationColumn.getAttribute("innerText").toLowerCase();
+                System.out.println("eachLocation = " + eachLocation);
+                Assert.assertTrue(eachLocation.contains(keyword));
+                System.out.println("selam");
+            }
+
+
+        }
+
+    }
+
+
+    //us-4) user should see the result that does not contain specified keyword
+
+    @When("user selects {string} method with a {string}")
+    public void userSelectsMethodWithA(String methodName, String keyword) {
+
+        this.keyword=keyword;
+        vehiclePage.locationAllDropdown.click();
+        vehiclePage.dropdownFilterButtonUnderLocation.click();
+        vehiclePage.getFilterMethod(methodName);//it gets the specific method that we parameterized inside the feature file
+        vehiclePage.filterTextField.sendKeys(keyword);
+        vehiclePage.updateButtonToFilter.click();
+        BrowserUtils.sleep(2);
+    }
+
+
+    @Then("results should not contain the specified keyword")
+    public void resultsShouldNotContainTheSpecifiedKeyword() {
+        for (WebElement eachLocationRelatedCellUnderTheLocationColumn : vehiclePage.listOfDataUnderTheLocationColumn) {
+            String eachLocation=eachLocationRelatedCellUnderTheLocationColumn.getAttribute("innerText").toLowerCase();
+            System.out.println("eachLocation = " + eachLocation);
+            Assert.assertFalse(eachLocation.contains(keyword));
+            System.out.println("selam");
+        }
+
+
+
+    }
+        //us-5) user should see the result that starts with the specified keyword
+    @Then("results should start with the specified keyword")
+    public void resultsShouldStartWithTheSpecifiedKeyword() {
+        if(vehiclePage.listOfDataUnderTheLocationColumn.size()==0){
+            System.out.println("No entities were found to match your search. Try modifying your search criteria...");
+
+        }else{
+            for (WebElement eachLocationRelatedCellUnderTheLocationColumn : vehiclePage.listOfDataUnderTheLocationColumn) {
+                String eachLocation=eachLocationRelatedCellUnderTheLocationColumn.getAttribute("innerText").toLowerCase();
+                System.out.println("eachLocation = " + eachLocation);
+                Assert.assertTrue(eachLocation.startsWith(keyword));
+                System.out.println("selam");
+            }
+
+
+        }
+
+    }
+
+    //user should see the result that ends with the specified keyword
+
+    @Then("results should end with the specified keyword")
+    public void resultsShouldEndWithTheSpecifiedKeyword() {
+        if(vehiclePage.listOfDataUnderTheLocationColumn.size()==0){
+            System.out.println("No entities were found to match your search. Try modifying your search criteria...");
+
+        }else{
+            for (WebElement eachLocationRelatedCellUnderTheLocationColumn : vehiclePage.listOfDataUnderTheLocationColumn) {
+                String eachLocation=eachLocationRelatedCellUnderTheLocationColumn.getAttribute("outerText").toLowerCase();
+                System.out.println("eachLocation = " + eachLocation);
+                Assert.assertTrue(eachLocation.endsWith(keyword));
+                System.out.println("selam");
+            }
+
+
+        }
+    }
 }

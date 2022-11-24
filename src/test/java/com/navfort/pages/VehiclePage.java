@@ -67,8 +67,6 @@ public class VehiclePage {
     @FindBy(xpath = "//a[@class='add-filter-button']")
     public WebElement manageFilterDropdownLink;
 
-
-
     @FindBy(xpath = "//input[@value='Location']")
     public WebElement locationOption;
 
@@ -80,6 +78,31 @@ public class VehiclePage {
 
     @FindBy(xpath = "//a[@class='dropdown-item choice-value']")
     public List<WebElement> filterMethods;
+
+    @FindBy(xpath = "//button[.='Update']")
+    public WebElement updateButtonToFilter;
+
+    @FindBy(name = "value")
+    public WebElement filterTextField;
+
+    //it collects the exact cell data info under the location column
+    @FindBy(xpath = "//td[@data-column-label='Location']")
+    public List<WebElement>listOfDataUnderTheLocationColumn;
+
+    //this method is used for
+    public  void getFilterMethod(String methodName){
+
+        for (WebElement eachFilterMethod : filterMethods) {
+           if( eachFilterMethod.getText().equalsIgnoreCase(methodName)){
+             eachFilterMethod.click();
+               break;
+           }
+        }
+
+
+
+
+    }
 
     //Bilal's locators
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")
