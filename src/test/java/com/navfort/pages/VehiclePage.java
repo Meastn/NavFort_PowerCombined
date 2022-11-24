@@ -145,7 +145,8 @@ public class VehiclePage {
      @FindBy(xpath = "//a[.='is not any of']")
      public WebElement selectIsNotAnyOf;
 
-     @FindBy(xpath = "//a[.='is any of']")
+//     @FindBy(xpath = "//a[.='is any of']")
+     @FindBy(xpath = "//input[@id='s2id_autogen2']")
      public WebElement inputIsAnyOf;
 
      @FindBy(xpath = "//div[.='Compact']")
