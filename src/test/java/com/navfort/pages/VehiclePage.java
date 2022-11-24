@@ -59,7 +59,28 @@ public class VehiclePage {
 
     @FindBy(xpath = "//span[@class='grid-header-cell__label']")
     public List<WebElement>TableEachColumnName;
-    
+
+    //nav_805 locationfilter
+    @FindBy(xpath = "//select")
+    public WebElement manageFiltersSelectDropdown;
+
+    @FindBy(xpath = "//a[@class='add-filter-button']")
+    public WebElement manageFilterDropdownLink;
+
+
+
+    @FindBy(xpath = "//input[@value='Location']")
+    public WebElement locationOption;
+
+    @FindBy(xpath = "//div[@class='btn filter-criteria-selector oro-drop-opener oro-dropdown-toggle filter-default-value']")
+    public WebElement locationAllDropdown;
+
+    @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
+    public WebElement dropdownFilterButtonUnderLocation;
+
+    @FindBy(xpath = "//a[@class='dropdown-item choice-value']")
+    public List<WebElement> filterMethods;
+
     //Bilal's locators
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")
     public WebElement threeDots;
@@ -124,7 +145,8 @@ public class VehiclePage {
      @FindBy(xpath = "//a[.='is not any of']")
      public WebElement selectIsNotAnyOf;
 
-     @FindBy(xpath = "//a[.='is any of']")
+//     @FindBy(xpath = "//a[.='is any of']")
+     @FindBy(xpath = "//input[@id='s2id_autogen2']")
      public WebElement inputIsAnyOf;
 
      @FindBy(xpath = "//div[.='Compact']")
@@ -303,6 +325,14 @@ public class VehiclePage {
     public List<WebElement>  visibilityCells;
 
     //NVF-798 Grid Settings Kenan Locators And Methods Ends
+
+    //Huseyin's locator
+
+    @FindBy (xpath = "//tbody[@class='grid-body']/tr[2]")
+    public WebElement secondRowOfCarList;
+
+    @FindBy (xpath = "//a[text()='Add Event']")
+    public WebElement addEventButton;
 
 
 
