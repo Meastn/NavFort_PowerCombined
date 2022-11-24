@@ -14,6 +14,9 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 import java.util.List;
 
 public class NVF_805_Location_Filter {
@@ -158,7 +161,7 @@ public class NVF_805_Location_Filter {
 
     }
 
-    //user should see the result that ends with the specified keyword
+    //us-6 ) user should see the result that ends with the specified keyword
 
     @Then("results should end with the specified keyword")
     public void resultsShouldEndWithTheSpecifiedKeyword() {
@@ -167,7 +170,7 @@ public class NVF_805_Location_Filter {
 
         }else{
             for (WebElement eachLocationRelatedCellUnderTheLocationColumn : vehiclePage.listOfDataUnderTheLocationColumn) {
-                String eachLocation=eachLocationRelatedCellUnderTheLocationColumn.getAttribute("outerText").toLowerCase();
+                String eachLocation=eachLocationRelatedCellUnderTheLocationColumn.getAttribute("textContent").toLowerCase();
                 System.out.println("eachLocation = " + eachLocation);
                 Assert.assertTrue(eachLocation.endsWith(keyword));
                 System.out.println("selam");
@@ -175,5 +178,46 @@ public class NVF_805_Location_Filter {
 
 
         }
+    }
+
+    //us-7)user should see  the result that is exactly same with the keyword that is specified
+
+    @Then("results should match with the specified keyword exactly")
+    public void resultsShouldMatchWithTheSpecifiedKeywordExactly() {
+        if(vehiclePage.listOfDataUnderTheLocationColumn.size()==0){
+            System.out.println("No entities were found to match your search. Try modifying your search criteria...");
+
+        }else{
+            for (WebElement eachLocationRelatedCellUnderTheLocationColumn : vehiclePage.listOfDataUnderTheLocationColumn) {
+                String eachLocation=eachLocationRelatedCellUnderTheLocationColumn.getAttribute("outerText").replace("NBSP"," ").toLowerCase();
+                System.out.println("eachLocation = " + eachLocation);
+
+                assertThat(eachLocation,is(equalTo(keyword)));
+//                Assert.assertTrue(eachLocation.equalsIgnoreCase(keyword));
+                System.out.println("selam");
+
+            }
+
+        }
+    }
+
+    //us-8-->Methods "Contains", "Does Not Contains", "Starts With", "Ends With", "Is Equal to"  shouldn't accept non-alphabetical characters
+
+
+    @When("user select {string} and type {string}")
+    public void userSelectAndType(String methodName, String nonAlpCharacters) {
+        vehiclePage.locationAllDropdown.click();
+        vehiclePage.dropdownFilterButtonUnderLocation.click();
+        vehiclePage.getFilterMethod(methodName);//it gets the specific method that we parameterized inside the feature file
+        vehiclePage.filterTextField.sendKeys(nonAlpCharacters);
+        vehiclePage.updateButtonToFilter.click();
+        BrowserUtils.sleep(2);
+    }
+
+    @Then("user should see that selected method does not accept specified non alphabetical characters")
+    public void userShouldSeeThatSelectedMethodDoesNotAcceptSpecifiedNonAlphabeticalCharacters() {
+
+        Assert.assertTrue( vehiclePage.falsifyMessage.isDisplayed());
+
     }
 }

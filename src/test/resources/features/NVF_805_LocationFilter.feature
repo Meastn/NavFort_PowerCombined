@@ -57,8 +57,8 @@ Feature: Location Filter
       | mia     |
       | ia      |
 
-  @nav_805
-  Scenario Outline:
+
+  Scenario Outline: user should see the the result that ends with the keyword that is specified
     When user selects "Ends With" method with a "<keyword>"
     Then results should end with the specified keyword
     Examples:
@@ -66,7 +66,29 @@ Feature: Location Filter
       | dc      |
       | miami   |
       | s       |
-#      | w york  | when i want to use the word to cpmpare that has space within my assertions never pass!!!!!!!!!::(
+#      | w york  | when i want to use the word to cpmpare that has space within, my assertions never pass!!!!!!!!!::(
+
+  @nav_805
+  Scenario Outline: user should see the the result that is exactly same with the keyword that is specified
+    When user selects "Is Equal to" method with a "<keyword>"
+    Then results should match with the specified keyword exactly
+    Examples:
+      | keyword      |
+      | new york     |
+      | washingtondc |
+      | newyork      |
+#      | washington dc |
+
+  Scenario Outline: Methods "Contains", "Does Not Contains", "Starts With", "Ends With", "Is Equal to"  shouldn't accept non-alphabetical characters
+    When user select "<methods>" and type "<non alphabetical characters>"
+    Then user should see that selected method does not accept specified non alphabetical characters
+    Examples:
+      | methods           | non alphabetical characters |
+      | contains          | 123                         |
+      | does not contains | ,.!                         |
+      | starts with       | $%6435                      |
+      | ends with         | ----==new                   |
+      | is equal to       | miami,                      |
 
 
 
@@ -89,11 +111,3 @@ Feature: Location Filter
 
 
 
-
-
-#
-#5- When user selects "Ends With" method with a keyword, the results should end with the specified keyword
-#
-#6- When user selects "Is Equal to" method with a keyword, the results should match the specified keyword exactly
-#
-#7- Methods  ("Contains", "Does Not Contains", "Starts With", "Ends With", "Is Equal to") shouldn't accept non-alphabetical characters
