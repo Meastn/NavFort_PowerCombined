@@ -23,7 +23,7 @@ import org.junit.runner.RunWith;
 
 
 
-            tags ="@nav_805",
+            tags ="",
 
             dryRun = false,
             
