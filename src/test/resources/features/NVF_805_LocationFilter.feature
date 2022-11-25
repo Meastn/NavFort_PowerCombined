@@ -74,7 +74,7 @@ Feature: Location Filter
     Then results should match with the specified keyword exactly
     Examples:
       | keyword      |
-      | new york     |
+#      | new york     |
       | washingtondc |
       | newyork      |
 #      | washington dc |

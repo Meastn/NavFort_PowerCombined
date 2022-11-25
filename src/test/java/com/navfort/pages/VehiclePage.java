@@ -92,7 +92,7 @@ public class VehiclePage {
     @FindBy(xpath = "//td[@data-column-label='Location']")
     public List<WebElement>listOfDataUnderTheLocationColumn;
 
-    //this method is used for
+    //this method is used for getting each filter method through the loop one by one
     public  void getFilterMethod(String methodName){
 
         for (WebElement eachFilterMethod : filterMethods) {
