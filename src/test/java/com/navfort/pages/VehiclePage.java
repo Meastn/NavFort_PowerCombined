@@ -67,10 +67,11 @@ public class VehiclePage {
     @FindBy(xpath = "//a[@class='add-filter-button']")
     public WebElement manageFilterDropdownLink;
 
-
-
     @FindBy(xpath = "//input[@value='Location']")
     public WebElement locationOption;
+
+    @FindBy(xpath = "//button[@class='btn dropdown-toggle']")
+    public WebElement X;
 
     @FindBy(xpath = "//div[@class='btn filter-criteria-selector oro-drop-opener oro-dropdown-toggle filter-default-value']")
     public WebElement locationAllDropdown;
@@ -80,6 +81,30 @@ public class VehiclePage {
 
     @FindBy(xpath = "//a[@class='dropdown-item choice-value']")
     public List<WebElement> filterMethods;
+
+    @FindBy(xpath = "//button[.='Update']")
+    public WebElement updateButtonToFilter;
+
+    @FindBy(name = "value")
+    public WebElement filterTextField;
+
+    //it collects the exact cell data info under the location column
+    @FindBy(xpath = "//td[@data-column-label='Location']")
+    public List<WebElement>listOfDataUnderTheLocationColumn;
+
+    //this method is used for getting each filter method through the loop one by one
+    public  void getFilterMethod(String methodName){
+
+        for (WebElement eachFilterMethod : filterMethods) {
+           if( eachFilterMethod.getText().equalsIgnoreCase(methodName)){
+             eachFilterMethod.click();
+               break;
+           }
+        }
+
+    }
+    @FindBy(xpath = "//span[.='No entities were found to match your search. Try modifying your search criteria...']")
+    public WebElement falsifyMessage;
 
     //Bilal's locators
     @FindBy(xpath = "//table[@class='grid table-hover table table-bordered table-condensed']/tbody//tr[1]//td[20]")
