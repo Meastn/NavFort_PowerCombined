@@ -346,7 +346,7 @@ public class VehiclePage {
     @FindBy(xpath = "//span[@title='Move column']")
     public List<WebElement> moveColumns;
 
-    @FindBy (xpath = "//td[@class='visibility-cell']")
+    @FindBy (xpath = "(//td[@class='visibility-cell'])//input[@type='checkbox']")
     public List<WebElement>  visibilityCells;
 
     //NVF-798 Grid Settings Kenan Locators And Methods Ends

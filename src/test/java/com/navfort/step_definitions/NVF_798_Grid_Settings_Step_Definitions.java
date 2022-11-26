@@ -121,27 +121,50 @@ public class NVF_798_Grid_Settings_Step_Definitions {
         }*/
 
     }}
-
+    List<String> visibilityCellsIds = new ArrayList<>();
     @Then("user select any column name")
     public void userSelectAnyColumnName() {
-        try{
-            vehiclePage.columnNames.get(2).click();
-        }catch (Exception e){
-            System.out.println("error");
+
+
+        for (WebElement visibilityCell : vehiclePage.visibilityCells) {
+            visibilityCellsIds.add(visibilityCell.getAttribute("id"));
+        }
+
+        for (int i = 0; i <visibilityCellsIds.size() ; i++) {
+            System.out.println("Column Name "+vehiclePage.columnNames.get(i).getText() +" "+
+                    "checkbox id name " + visibilityCellsIds.get(i)+ " is selected? = " +
+                    vehiclePage.visibilityCells.get(i).isSelected());
+            vehiclePage.columnNames.get(i).click();
+            BrowserUtils.sleep(1);
+            System.out.println("clicked " + vehiclePage.columnNames.get(i));
         }
 
 
+   /*     try{
+            vehiclePage.columnNames.get(2).click();
 
-
+        }catch (Exception e){
+            System.out.println("error "  + e.getMessage());
+        }   */
     }
 
     @And("visibility checkbox turns unchecked")
     public void visibilityCheckboxTurnsUnchecked() {
-        try {
+        for (int i = 0; i <visibilityCellsIds.size() ; i++) {
+            System.out.println("Column Name "+vehiclePage.columnNames.get(i).getText() +" "+
+                    "checkbox id name " + visibilityCellsIds.get(i)+ " is selected? = " +
+                    vehiclePage.visibilityCells.get(i).isSelected());
+
             Assert.assertTrue((!vehiclePage.visibilityCells.get(2).isSelected()));
-        }catch (Exception e){
-            System.out.println("checked or unceked I dont know");
         }
+
+
+      /*  try {
+            Assert.assertTrue((!vehiclePage.visibilityCells.get(2).isSelected()));
+
+        }catch (Exception e){
+            System.out.println("checked or unceked I dont know"+ e.getMessage());
+        }*/
 
 
 
