@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
         plugin = {"html:target/failed-html-report"},
         features = "@target/rerun.txt",
         glue = "com/navfort/step_definitions"
+
 )
 
 public class FailedTestRunner {
